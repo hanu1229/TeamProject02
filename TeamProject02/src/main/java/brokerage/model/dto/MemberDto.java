@@ -21,6 +21,6 @@ public class MemberDto {
 	private String mphone;
 	// 가입날짜
 	private String mdate;
-	// 판매권한
+	// 판매권한 : 0 = 판매 X , 1 = 판매 O , 9 = 관리자
 	private int msell;
 } // c end
