@@ -17,7 +17,7 @@ public class Dao {
 		} catch(ClassNotFoundException e) {
 			System.out.println(e);
 		} catch(SQLException e) {
-			System.out.println(e);
+			System.out.println(e); 
 		}
 	}
 }
