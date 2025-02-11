@@ -6,16 +6,13 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link rel = "stylesheet" href = "/css/admin/admin.css">
+		<link rel = "stylesheet" href = "/TeamProject02/css/admin/admin.css">
 	</head>
 	<body style = "height : 100%;">
-		<div class = "wrap">
-			<div class = "sidebar">			
-				<jsp:include page = "/admin/adminHeader.jsp"></jsp:include>
-			</div>
-			<div class = "content">
-				<h1>두번쨰 열의 제목</h1>
-				<p>두번째 열의 본문</p>
+		<div class = "wrap">		
+			<jsp:include page = "/admin/admin-header.jsp"></jsp:include>
+			<div id = "content" class = "content">
+				<h1>회원목록</h1>
 			</div>
 		</div>
 

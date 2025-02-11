@@ -1,3 +1,8 @@
 .wrap {
 	display : flex;
 }
+.content {
+	margin-top : 80px;
+	margin-left : 40px;
+	width : 100%;
+}
