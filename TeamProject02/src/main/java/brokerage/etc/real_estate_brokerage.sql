@@ -173,10 +173,10 @@ create table photo(
 # 기본 : 
 insert into photo(phname, pno) values ('사진1.jpg', 1);
 insert into photo(phname, pno) values ('사진2.jpg', 2);
-insert into photo(phname, pno) values ('사진3.jpg', 3);
-insert into photo(phname, pno) values ('사진4.jpg', 4);
-insert into photo(phname, pno) values ('사진5.jpg', 5);
-insert into photo(phname, pno) values ('사진6.jpg', 6);
+insert into photo(phname, pno) values ('사진3.jpg', 4);
+insert into photo(phname, pno) values ('사진4.jpg', 5);
+insert into photo(phname, pno) values ('사진5.jpg', 1);
+insert into photo(phname, pno) values ('사진6.jpg', 4);
 
 # 중개한매물테이블
 drop table if exists brokerage;
@@ -214,3 +214,8 @@ select * from sell_request;
 select * from property;
 select * from photo;
 select * from brokerage;
+
+select p.pno, p.pcategory, p.paddress, p.pbuilding, p.pstorey, p.parea, p.pyear, p.pstructure, p.pdate, p.padd, p.psell, m.mid, ph.phname
+from property as p 
+inner join member as m on m.mno = p.mno 
+inner join photo as ph on ph.pno = p.pno where psell = 0;
