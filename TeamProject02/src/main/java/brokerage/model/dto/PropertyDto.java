@@ -1,5 +1,13 @@
 package brokerage.model.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor @AllArgsConstructor
+@Getter @Setter @ToString
 public class PropertyDto {
 	// 매물번호 PK
 	private int pno;
