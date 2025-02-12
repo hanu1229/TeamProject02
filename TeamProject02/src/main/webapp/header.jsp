@@ -12,7 +12,7 @@
 <body>
 	<div id=header>
 	<!-- 부트스트랩 nav -->
-		<nav class="navbar navbar-expand-lg">
+		<nav class="navbar navbar-expand-lg header_nav">
 	  		<div class="container-fluid">
 	  			<div class="header_logo">
 		    		<a class="navbar-brand" href="/TeamProject02/index.jsp"> <!-- 로고 -->
@@ -37,19 +37,32 @@
 		   	 	<div class="collapse navbar-collapse menu" id="navbarSupportedContent">
 		     		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		        		<li class="nav-item">
-		          			<a class="nav-link" href="#">지도</a>
+		          			<a class="nav-link py-0" href="#">지도</a>
 		        		</li>
 		        		<li class="nav-item">
-		         			<a class="nav-link" href="#">로그인</a>
+		         			<a class="nav-link py-0" href="#">로그인</a>
 		        		</li>
-		        		<li class="nav-item" >
-		          			<a class="nav-link" href="#">회원가입</a>
+		        		<li class="nav-item">
+		          			<a class="nav-link py-0" href="#">회원가입</a>
 		        		</li>
 		      		</ul>
 		   		</div>
 			</div>
 		</nav>
-	</div>
+		<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">나중에 마이페이지 버튼에 적용</button>
+
+		<div class="offcanvas offcanvas-end " data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+			<div class="offcanvas-header ">
+			  <h5 id="offcanvasRightLabel" class="fw-bold mx-auto">마이페이지</h5>
+			</div>
+			<div class="offcanvas-body">
+			  <div class="d-grid gap-2">
+				  <button class="btn btn-outline-dark" type="button">회원정보수정</button>
+				  <button class="btn btn-outline-dark" type="button">본인매물조회</button>
+				</div>
+			</div>
+		</div>
+	</div> <!-- 부트스트랩 nav end -->
 
 <!-- 부트스트랩 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

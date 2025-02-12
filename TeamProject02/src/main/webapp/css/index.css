@@ -4,9 +4,11 @@
 	box-sizing: border-box;
 }
 #header{
+	border-bottom: 1px solid #f1f2f5;
+}
+.header_nav{
 	width: 1200px;
 	margin: 0 auto;
-	border: 1px solid #f1f2f5;
 }
 .textarea{
 	resize: none;
