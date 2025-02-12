@@ -10,12 +10,12 @@ import brokerage.model.dto.PropertyDto;
 public class ClientDao extends Dao {
 
 	//싱글톤
-	private static ClientDao clinetDao = new ClientDao();
+	private static ClientDao clientDao = new ClientDao();
 	private ClientDao() {
 		super();//부모 클래스 생성자 호출
 	}
 	public static ClientDao getInstance() {
-		return ClientDao;
+		return clientDao;
 	}
 	
 	//전체 매물 수 조회
