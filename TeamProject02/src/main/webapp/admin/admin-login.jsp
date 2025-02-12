@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel = "stylesheet" href = "/TeamProject02/css/admin/admin.css">
 	</head>
 	<body>
 		<!-- 회원가입 폼 -->
@@ -15,7 +16,7 @@
 				<!-- 오른쪽 회원가입 입력 구역 -->
 				<div class="col-md-10 mx-auto col-lg-5">
 					<form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-						<div class = "mb-5">						
+						<div class = "mb-5 img-box">						
 							<img src = "/TeamProject02/img/logo.png"/>
 						</div>
 						<!-- 아이디 -->
