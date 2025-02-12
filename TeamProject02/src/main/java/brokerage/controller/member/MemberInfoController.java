@@ -38,8 +38,4 @@ public class MemberInfoController extends HttpServlet{
 		resp.getWriter().print(result);
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
 } // c end
