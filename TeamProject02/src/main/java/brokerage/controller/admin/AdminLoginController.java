@@ -53,19 +53,7 @@ public class AdminLoginController extends HttpServlet {
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> AdminController 관리자 로그아웃(doDelete) 실행");
 		
-		boolean state = Boolean.parseBoolean(req.getParameter("state"));
-		boolean result = false;
-		if(state == true) {
-			HttpSession session = req.getSession(false);
-			if(session != null) {				
-				session.removeAttribute("adminLoginMno");
-				// 세션 무효화
-				session.invalidate();
-				result = true;
-			}
-		}
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		
 		
 		System.out.println(">> AdminController 관리자 로그아웃(doDelete) 종료\n");
 	}
