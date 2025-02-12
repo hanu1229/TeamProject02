@@ -8,6 +8,9 @@
 	margin: 0 auto;
 	border: 1px solid #f1f2f5;
 }
+.textarea{
+	resize: none;
+}
 .header_logo{
 	width: 25%;
 }

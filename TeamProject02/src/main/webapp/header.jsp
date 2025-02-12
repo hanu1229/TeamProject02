@@ -15,7 +15,7 @@
 		<nav class="navbar navbar-expand-lg">
 	  		<div class="container-fluid">
 	  			<div class="header_logo">
-		    		<a class="navbar-brand" href="#"> <!-- 로고 -->
+		    		<a class="navbar-brand" href="/TeamProject02/index.jsp"> <!-- 로고 -->
 		    			<img class="header_logo" src="/TeamProject02/img/logo.png">
 		    		</a>
 		    	</div>
