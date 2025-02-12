@@ -63,4 +63,25 @@ public class MemberDao extends Dao{
 		return 0; // 0이면 로그인 실패
 	}
 	
+	// 회원정보 수정 메소드
+	public boolean update(MemberDto memberDto) {
+		try {
+			// sql 작성
+			String sql = "update member set mpwd = ? , mname = ? , mphone = ? where mno = ?";
+			// DB에 sql 기재
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, memberDto.getMpwd());
+			ps.setString(2, memberDto.getMname());
+			ps.setString(3, memberDto.getMphone());
+			ps.setInt(4, memberDto.getMno());
+			// 기재된 sql 실행 후 결과 반환
+			int count = ps.executeUpdate();
+			// 결과에 따른 처리 반환
+			if(count == 1) {return true;} // 수정 성공
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+		return false; // 수정 실패시
+	}
+	
 } // c end
