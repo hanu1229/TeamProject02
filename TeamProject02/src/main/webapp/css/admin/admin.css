@@ -1,0 +1,15 @@
+.wrap {
+	display : flex;
+}
+.content {
+	margin-top : 80px;
+	margin-left : 40px;
+	width : 100%;
+}
+
+.img-box {
+	margin : 0px auto;
+}
+.img-box > img {
+	width : 100%;
+}
