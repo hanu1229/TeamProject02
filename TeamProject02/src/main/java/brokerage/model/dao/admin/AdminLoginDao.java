@@ -1,9 +1,10 @@
-package brokerage.model.dao;
+package brokerage.model.dao.admin;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import brokerage.model.dao.Dao;
 import brokerage.model.dto.MemberDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

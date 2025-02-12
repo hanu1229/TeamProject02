@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import brokerage.model.dao.AdminLoginDao;
+import brokerage.model.dao.admin.AdminLoginDao;
 import brokerage.model.dto.MemberDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/admin/member")
+@WebServlet("/admin/login")
 public class AdminLoginController extends HttpServlet {
 	
 	/** 관리자 로그인 함수 */ 
@@ -47,6 +47,27 @@ public class AdminLoginController extends HttpServlet {
 		resp.getWriter().print(mno);
 		
 		System.out.println(">> AdminLoginController 관리자 로그인(doPost) 종료\n");
+	}
+	
+	/** 관리자 로그아웃 */
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println(">> AdminController 관리자 로그아웃(doDelete) 실행");
+		
+		boolean state = Boolean.parseBoolean(req.getParameter("state"));
+		boolean result = false;
+		if(state == true) {
+			HttpSession session = req.getSession(false);
+			if(session != null) {				
+				session.removeAttribute("adminLoginMno");
+				// 세션 무효화
+				session.invalidate();
+				result = true;
+			}
+		}
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
+		
+		System.out.println(">> AdminController 관리자 로그아웃(doDelete) 종료\n");
 	}
 	
 }
