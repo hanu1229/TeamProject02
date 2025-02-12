@@ -9,7 +9,7 @@
 		<link rel = "stylesheet" href = "/TeamProject02/css/admin/admin.css">
 	</head>
 	<body style = "height : 100%;">
-		<div class = "wrap">		
+		<div class = "wrap"> 		
 			<jsp:include page = "/admin/admin-header.jsp"></jsp:include>
 			<div id = "content" class = "content">
 				<h1>회원목록</h1>

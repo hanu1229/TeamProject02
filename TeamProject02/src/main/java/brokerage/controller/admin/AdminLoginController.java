@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/admin/member")
 public class AdminLoginController extends HttpServlet {
 	
-	/** 관리자 로그인 함수 */
+	/** 관리자 로그인 함수 */ 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> AdminLoginController 관리자 로그인(doPost) 실행");
