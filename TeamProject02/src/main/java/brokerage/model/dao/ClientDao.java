@@ -3,7 +3,9 @@ package brokerage.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import brokerage.model.dto.PropertyDto;
 
@@ -143,5 +145,43 @@ public class ClientDao extends Dao {
 		}
 		 return null;
 	}// cend
+	
+	//판매자 매물 정보 조회
+	public Map<String, Object>getSellerInfo(int pno){
+		String sql = "SELECT m.mname, m.mphone " +
+                "FROM property p " +
+                "JOIN member m ON p.mno = m.mno " +
+                "WHERE p.pno = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, pno);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				Map<String, Object>map = new HashMap<>();
+				map.put("sellerName", rs.getString("mname"));
+				map.put("sellerPhone", rs.getString("mphone"));
+				return map;
+			}
+			
+		}catch (Exception e) {
+			System.out.println("getSellerInfo 예외: " + e);
+		}
+		return null;
+	}// f end
+	
+	 // 문의내역 저장
+    public boolean saveBuyRequest(int pno, int buyerMno) {
+        String sql = "INSERT INTO buy_request(pno, mno) VALUES(?, ?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, pno);
+            ps.setInt(2, buyerMno);
+            return ps.executeUpdate() > 0;
+        } catch(Exception e) {
+            System.out.println("saveBuyRequest 예외: " + e);
+        }
+        return false;
+    }
 	
 }// class end
