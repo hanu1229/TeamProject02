@@ -19,23 +19,26 @@ public class MemberSignupController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("signup post OK");
 		
-		// HTTP 요청
+		// 1. HTTP 요청에서 JSON 데이터를 읽어와 객체로 변환
 		ObjectMapper mapper = new ObjectMapper();
 		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
-		System.out.println("memberDto : " + memberDto);
+		System.out.println("memberDto : " + memberDto); // 변환된 데이터 확인 로그
+
 		
         // 유효성 검사 수행 (입력 값이 적절한지 확인)
+		// ( 0 / 1 / 2 / 3 ) 해서 0 은 회원 가입 성공 1 은 회원 가입 실패 2 / 3 는 유효성 검사 성공 / 실패로 전달?
+		
         String validationError = validation(memberDto);
         if (validationError != null) { // 유효성 검사에서 오류가 발생하면
             sendJsonResponse(resp, false, validationError); // 클라이언트에게 실패 메시지 반환
             return; // 회원가입 로직을 실행하지 않고 메서드 종료
         }
         
-		// Dao 전달 => 응답
+        // 3. 회원가입 로직 실행 (DB에 회원 정보 저장)
 		int signupResult = MemberDao.getInstance().signup(memberDto);
-		boolean result = (signupResult > 0); // 회원가입 성공 여부를 boolean으로 변환
+		boolean result = (signupResult > 0); // 회원가입 성공 여부를 boolean으로 변환 // 0보다 크면 성공 (회원번호가 생성됨)
 
-		// HTTP 응답
+		  // 4. JSON 형식으로 회원가입 결과 응답
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
 	}
