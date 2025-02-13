@@ -15,7 +15,7 @@ public class AdminLoginDao extends Dao {
 	private static AdminLoginDao instance = new AdminLoginDao();
 	
 	/** 관리자 로그인 SQL */
-	public MemberDto Login(MemberDto memberDto) {
+	public MemberDto login(MemberDto memberDto) {
 		MemberDto result = new MemberDto();
 		try {
 			String sql = "select mno, msell_state from member where mid = ? and mpwd = ?;";
@@ -37,4 +37,22 @@ public class AdminLoginDao extends Dao {
 		}
 		return result;
 	}
+	
+	/** 로그인 체크 SQL */
+	public String loginCheck(int mno) {
+		try {
+			String sql = "select mname from member where mno = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, mno);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString("mname");
+			}
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	
 }

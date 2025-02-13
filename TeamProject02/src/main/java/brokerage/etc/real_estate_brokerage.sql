@@ -18,7 +18,7 @@ create table member(
     # 가입날짜
     mdate datetime default now(),
     # 판매권한
-    # 0 : false, 1 : ture, 3 : 권한신청, 4 : 관리자
+    # 0 : false, 1 : ture, 3 : 권한신청, 9 : 관리자
     msell_state int default 0,
     constraint primary key(mno)
 );
@@ -219,3 +219,7 @@ select p.pno, p.pcategory, p.paddress, p.pbuilding, p.pstorey, p.parea, p.pyear,
 from property as p 
 inner join member as m on m.mno = p.mno 
 inner join photo as ph on ph.pno = p.pno where psell = 0;
+
+select p.*, m.*, ph.* from property as p 
+inner join member as m on m.mno = p.mno 
+inner join photo as ph on ph.pno = p.pno;

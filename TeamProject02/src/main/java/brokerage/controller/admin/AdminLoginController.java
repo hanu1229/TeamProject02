@@ -25,7 +25,7 @@ public class AdminLoginController extends HttpServlet {
 		// js에서 가져온 json값을 MemberDto로 변환(매핑)
 		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
 		// 로그인 시도
-		MemberDto result = AdminLoginDao.getInstance().Login(memberDto);
+		MemberDto result = AdminLoginDao.getInstance().login(memberDto);
 		System.out.println(">> result : " + result.toString());
 		int mno = 0;
 		// 데이터베이스에서 가져온 mno값이 0보다 크면 mno에 mno값 저장 0보다 작거나 같으면 mno에 0 저장
@@ -51,11 +51,24 @@ public class AdminLoginController extends HttpServlet {
 	
 	/** 관리자 로그아웃 */
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> AdminController 관리자 로그아웃(doDelete) 실행");
+		System.out.println(">> AdminLoginController 관리자 로그아웃(doDelete) 실행");
 		
+		boolean result = false;
+		boolean state = Boolean.parseBoolean(req.getParameter("state"));
+		resp.setContentType("application/json");
+		if(state == true) {
+			HttpSession session = req.getSession();
+			int mno = (Integer)session.getAttribute("adminLoginMno");
+			System.out.println(">> mno : " + mno);
+			if(mno > 0) {
+				result = true;
+				session.removeAttribute("adminLoginMno");
+			}
+		}
+		System.out.println(">> result : " + result);
+		resp.getWriter().print(result);
 		
-		
-		System.out.println(">> AdminController 관리자 로그아웃(doDelete) 종료\n");
+		System.out.println(">> AdminLoginController 관리자 로그아웃(doDelete) 종료\n");
 	}
 	
 }
