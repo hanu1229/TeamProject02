@@ -1,0 +1,25 @@
+#estateview_wrap {
+  max-width: 100%; /* 부모 크기를 초과하지 않도록 설정 */
+  overflow-x: auto; /* 넘치는 경우 가로 스크롤 생성 */
+}
+.estateview_bg1 form{
+	background-color: #dbdbdb5e;
+}
+.estate_bg1{
+	background-color: #dbdbdb5e;
+}
+.estate_box {
+    max-height: 750px;
+    overflow: auto; /* 스크롤 */
+}
+.estate_table {
+  max-width: 2500px;
+  white-space: nowrap; /* 글자가 여러 줄로 줄바꿈되지 않도록 설정 */
+}
+.estateview_select{
+	min-width: 120px;
+	max-width: 200px;
+}
+#estateview_wrap .estate_table th, #estateview_wrap .estate_table td {
+  padding: 0.75rem;
+}
