@@ -49,7 +49,7 @@ public class ClientService {
 	}// c end
 	
 	//2.매물 개별 조회
-	public PropertyDto getPropertyDto(int pno) {
+	public PropertyDto getProperty(int pno) {
 		PropertyDto property = clientDao.findById(pno);
 		if(property == null) {
 			throw new RuntimeException("해당 매물이 존재하지않습니다.");
