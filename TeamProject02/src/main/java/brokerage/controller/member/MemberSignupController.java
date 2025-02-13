@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/signup")
+@WebServlet("/afiliado/signup")
 public class MemberSignupController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class MemberSignupController extends HttpServlet{
         // 3. 회원가입 로직 실행 (DB에 회원 정보 저장)
 		int signupResult = MemberDao.getInstance().signup(memberDto);
 		boolean result = (signupResult > 0); // 회원가입 성공 여부를 boolean으로 변환 // 0보다 크면 성공 (회원번호가 생성됨)
-
+		
 		  // 4. JSON 형식으로 회원가입 결과 응답
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
@@ -72,8 +72,8 @@ public class MemberSignupController extends HttpServlet{
 //        }
         
         // 전화번호 유효성 검사 (하이픈 없이 숫자 13자리만 허용)
-        if (memberDto.getMphone() == null || !memberDto.getMphone().matches("^\\d{13}$")) {
-            return "전화번호는 숫자 13자리여야 합니다. EX) 0101234567890";
+        if (memberDto.getMphone() == null || !memberDto.getMphone().matches("^\\d{11}$")) {
+            return "전화번호는 ( - ) 제외 숫자 11자리여야 합니다. EX) 0101234567890";
         }
 
         return null; // 모든 검사를 통과하면 null 반환 (오류 없음)
