@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>관리자 로그인</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel = "stylesheet" href = "/TeamProject02/css/admin/admin.css">
 	</head>
@@ -38,5 +38,6 @@
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src = "/TeamProject02/js/admin/admin-login.js"></script>
+		<script src = "/TeamProject02/js/admin/admin-header.js"></script>
 	</body>
 </html>
