@@ -1,17 +1,21 @@
-/* 전체 css */
 *{
 	font-family: '맑은고딕';
 	box-sizing: border-box;
 }
-#header{
-	border-bottom: 1px solid #f1f2f5;
+a{
+	text-decoration: none; color: inherit;
 }
-.header_nav{
+.header_nav, #estateview_wrap{
 	width: 1200px;
 	margin: 0 auto;
 }
 .textarea{
 	resize: none;
+}
+/* 전체 css */
+
+#header{
+	border-bottom: 1px solid #f1f2f5;
 }
 .header_logo{
 	width: 25%;
@@ -36,4 +40,7 @@
 }
 .menu ul li a{
 	font-size: 20px; font-weight: 900;
+}
+.estate_table{
+	width: 1800px;
 }

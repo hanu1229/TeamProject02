@@ -10,6 +10,7 @@
 	<link href="/TeamProject02/css/index.css" rel="stylesheet">
 </head>
 <body>
+
 	<div id=header>
 	<!-- 부트스트랩 nav -->
 		<nav class="navbar navbar-expand-lg header_nav">
