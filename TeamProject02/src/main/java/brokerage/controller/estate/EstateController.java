@@ -70,11 +70,11 @@ public class EstateController extends HttpServlet{
 		System.out.println("EstateController doget!!");
 		
 		
-		List< Map<String,String> > result = EstateDao.getInstance().findByPno();
+		//List< Map<String,String> > result = EstateDao.getInstance().findByPno();
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString( );
-		resp.getContentType("application/json");
-		resp.getWriter().print( jsonResult );
+		//String jsonResult = mapper.writeValueAsString( );
+		//resp.getContentType("application/json"); 
+		//resp.getWriter().print( jsonResult );
 		
 	} // f end
 	@Override
