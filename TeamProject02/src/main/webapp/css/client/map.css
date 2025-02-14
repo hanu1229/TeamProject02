@@ -1,1 +1,102 @@
-@charset "UTF-8";
+/* /webapp/css/client/map.css */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* 검색 헤더 */
+.search-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#searchInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 2px solid #2d60a3;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #2d60a3;
+    color: white;
+    border-color: #2d60a3;
+}
+
+/* 메인 컨테이너 */
+.main-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+}
+
+/* 매물 목록 */
+.property-list {
+    width: 400px;
+    background: white;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-header {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.property-card {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.property-card:hover {
+    background: #f8f9fa;
+}
+
+/* 지도 영역 */
+#map {
+    flex-grow: 1;
+    height: 100%;
+}
+
+/* 매물 상세 정보 */
+.property-detail {
+    width: 400px;
+    background: white;
+    border-left: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+}
