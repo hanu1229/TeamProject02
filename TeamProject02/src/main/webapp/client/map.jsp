@@ -9,7 +9,7 @@
 <p style="margin-top:-12px">
      사용한 데이터를 보시려면
     <em class="link">
-       <a href="/download/web/data/chicken.json" target="_blank">여기를 클릭하세요!</a>
+       <!-- <a href="/download/web/data/chicken.json" target="_blank">여기를 클릭하세요!</a> -->
     </em>
 </p>
 <div id="map" style="width:100%;height:350px;"></div>
