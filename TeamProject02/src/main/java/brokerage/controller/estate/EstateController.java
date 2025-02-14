@@ -1,4 +1,4 @@
-package brokerage.controller;
+package brokerage.controller.estate;
 
 import java.io.IOException;
 
