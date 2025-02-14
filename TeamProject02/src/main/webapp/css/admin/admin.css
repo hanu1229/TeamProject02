@@ -17,3 +17,14 @@
 .logout-btn {
 	width : 100%;
 }
+
+/* admin-member.js start */
+
+.btn-enable {
+	
+}
+.btn-disable {
+	cursor : not-allowed;
+}
+
+/* admin-member.js end */
