@@ -75,4 +75,18 @@ public class AdminMemberDao extends Dao {
 		return false;
 	}
 	
+	/** 회원 삭제 SQL */
+	public boolean deleteMember(int mno) {
+		try {
+			String sql = "delete from member where mno = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, mno);
+			int count = ps.executeUpdate();
+			if(count == 1) { return true; }
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+	
 }

@@ -54,4 +54,20 @@ public class AdminMemberController extends HttpServlet {
 		System.out.println(">> AdminMemberController 회원목록 개별 수정(doPUT) 종료\n");
 	}
 	
+	/** 회원 삭제 */
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println(">> AdminMemberController 회원 삭제(doDelete) 실행");
+		
+		int mno = Integer.parseInt(req.getParameter("mno"));
+		System.out.println(">> mno : " + mno);
+		boolean result = AdminMemberDao.getInstance().deleteMember(mno);
+		System.out.println(">> result : " + result);
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
+		
+		System.out.println(">> AdminMemberController 회원 삭제(doDelete) 종료\n");
+	}
+	
+	
 }

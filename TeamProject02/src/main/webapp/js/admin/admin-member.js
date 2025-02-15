@@ -29,7 +29,9 @@ let printAll = () => {
 						변경
 					</button>
 				</td>
-				<td>${obj.msell}</td>
+				<td>
+					<button type = "button" onclick = "requestDeleteMember(${obj.mno})">탈퇴</button>
+				</td>
 			</tr>
 			`;
 			// 판매권한을 가진 사람은 다시 권한을 갖지 않도록 버튼을 비활성화
@@ -101,7 +103,7 @@ function changeMsellState(mno) {
 	
 }
 
-/** 서버로 판매권한 수정 요청 */
+/** 서버에게 판매권한 수정 요청 */
 function requestChangeMsell(mno, number) {
 	let obj = {mno : mno, msell : number};
 	let option = {
@@ -118,6 +120,21 @@ function requestChangeMsell(mno, number) {
 	
 }
 
-
+/** 서버에게 회원삭제 요청 */
+function requestDeleteMember(mno) {
+	
+	let option = {method : "DELETE"};
+	fetch(`/TeamProject02/admin/member?mno=${mno}`, option)
+	.then(response => response.json())
+	.then(data => {
+		if(data == true) {
+			alert("정상적으로 탈퇴되었습니다.");
+		} else {
+			alert("탈퇴에 실패했습니다.");
+		}
+	})
+	.catch(error => { console.log(error); });
+	
+}
 
 
