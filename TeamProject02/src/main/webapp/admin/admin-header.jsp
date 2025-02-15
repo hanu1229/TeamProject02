@@ -18,19 +18,24 @@
 				<hr>
 				<ul class="nav nav-pills flex-column mb-auto">
 					<li class="nav-item">
-						<a href="/TeamProject02/admin/admin-member.jsp" class="nav-link active" aria-current="page">회원목록</a>
+						<a id = "admin-member" class="nav-link" aria-current="page" onclick = "changeList('admin-member')">
+							회원목록
+						</a>
 					</li>
 					<li>
-						<a href="#" class="nav-link link-body-emphasis">매물 등록</a>
+						<a id = "admin-brokerage" class="nav-link" onclick = "changeList('admin-brokerage')">
+							중개한 매물 목록
+						</a>
 					</li>
 					<li>
-						<a href="#" class="nav-link link-body-emphasis">중개한 매물 목록</a>
+						<a id = "admin-sell-request" class="nav-link" onclick = "changeList('admin-sell-request')">
+							신청 매물 목록
+						</a>
 					</li>
 					<li>
-						<a href="#" class="nav-link link-body-emphasis">신청 매물 목록</a>
-					</li>
-					<li>
-						<a href="#" class="nav-link link-body-emphasis">등록된 매물 목록</a>
+						<a id = "admin-property" class="nav-link" onclick = "changeList('admin-property')">
+							등록된 매물 목록
+						</a>
 					</li>
 				</ul>
 			  	<hr>

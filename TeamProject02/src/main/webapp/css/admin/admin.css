@@ -8,6 +8,7 @@
 	width : 100%;
 }
 
+/* admin-header.js start */
 .img-box {
 	margin : 0px auto;
 }
@@ -17,6 +18,10 @@
 .logout-btn {
 	width : 100%;
 }
+#admin-member, #admin-brokerage, #admin-sell-request, #admin-property {
+	cursor : pointer;
+}
+/* admin-header.js end */
 
 /* admin-member.js start */
 
