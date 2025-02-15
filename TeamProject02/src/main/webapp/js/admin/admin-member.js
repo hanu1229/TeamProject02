@@ -25,12 +25,12 @@ let printAll = () => {
 				<td>${obj.mdate}</td>
 				<td id = "msell-state${obj.mno}">${msellString}</td>
 				<td>
-					<button id = "msell-btn${obj.mno}" class = "btn-enable" type = "button" onclick = "">
+					<button id = "msell-btn${obj.mno}" class = "btn btn-primary btn-enable" type = "button" onclick = "">
 						변경
 					</button>
 				</td>
 				<td>
-					<button type = "button" onclick = "requestDeleteMember(${obj.mno})">탈퇴</button>
+					<button class = "btn btn-primary" type = "button" onclick = "requestDeleteMember(${obj.mno})">탈퇴</button>
 				</td>
 			</tr>
 			`;
