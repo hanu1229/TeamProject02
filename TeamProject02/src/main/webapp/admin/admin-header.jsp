@@ -18,7 +18,7 @@
 				<hr>
 				<ul class="nav nav-pills flex-column mb-auto">
 					<li class="nav-item">
-						<a href="#" class="nav-link active" aria-current="page">회원목록</a>
+						<a href="/TeamProject02/admin/admin-member.jsp" class="nav-link active" aria-current="page">회원목록</a>
 					</li>
 					<li>
 						<a href="#" class="nav-link link-body-emphasis">매물 등록</a>

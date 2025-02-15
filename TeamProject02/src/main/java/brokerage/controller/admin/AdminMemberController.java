@@ -58,7 +58,7 @@ public class AdminMemberController extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> AdminMemberController 회원 삭제(doDelete) 실행");
-		
+		// 외래키 때문에 오류가 발생 중 개인카톡에 올린 상의할 내용을 상의 후 어떻게 오류를 잡을지 결정
 		int mno = Integer.parseInt(req.getParameter("mno"));
 		System.out.println(">> mno : " + mno);
 		boolean result = AdminMemberDao.getInstance().deleteMember(mno);
