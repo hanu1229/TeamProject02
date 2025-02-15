@@ -17,7 +17,7 @@ let printAll = () => {
 			// 판매권한 숫자를 문자열 O, X, 관리자로 변경
 			let msellString = msellToString(obj.msell);
 			html = `
-			<tr>
+			<tr id = "member-${obj.mno}">
 				<td>${obj.mno}</td>
 				<td>${obj.mid}</td>
 				<td>${obj.mname}</td>
@@ -25,7 +25,7 @@ let printAll = () => {
 				<td>${obj.mdate}</td>
 				<td id = "msell-state${obj.mno}">${msellString}</td>
 				<td>
-					<button id = "msell-btn${obj.mno}" class = "btn-enable" onclick = "">
+					<button id = "msell-btn${obj.mno}" class = "btn-enable" type = "button" onclick = "">
 						변경
 					</button>
 				</td>
@@ -42,10 +42,10 @@ let printAll = () => {
 			let btn = document.querySelector(`#msell-btn${data[index].mno}`)
 			console.log(msell.innerHTML);
 			let str = msell.innerHTML;
-			if(str === "O") {
-				btn.addEventListener("click", changeMsellState(str));
-			} else if(str === "X") {
-				btn.addEventListener("click", changeMsellState(str));
+			if(str === "관리자") {
+				btn.disabled = true;
+			} else {
+				btn.addEventListener("click", () => changeMsellState(data[index].mno));
 			}
 			//btn.onclick = function() {alert("활성화"); };
 		}
@@ -73,8 +73,51 @@ function msellToString(msell) {
 }
 
 /** 판매권한 변경 */
-function changeMsellState(str) {
+function changeMsellState(mno) {
 	// str에 따라 다른 기능을 구현
 	// O일 경우 판매권한을 없애기
 	// X일 경우 판매권한을 주기
+	let msellState = document.querySelector(`#msell-state${mno}`);
+	let number = 0;
+	let state = ``;
+	if(msellState.innerHTML === "O") {
+		number = 0;
+		requestChangeMsell(mno, number)
+		.then(data => {
+			console.log(data);
+			state = msellToString(data.msell);
+			msellState.innerHTML = state;
+		});
+	} else if (msellState.innerHTML === "X") {
+		number = 1;
+		requestChangeMsell(mno, number)              
+		.then(data => {			
+			console.log(data);
+			state = msellToString(data.msell);
+			msellState.innerHTML = state;
+		});
+	}
+	return alert("권한을 변경했습니다.");
+	
 }
+
+/** 서버로 판매권한 수정 요청 */
+function requestChangeMsell(mno, number) {
+	let obj = {mno : mno, msell : number};
+	let option = {
+		method : "PUT",
+		headers : {"Content-Type" : "application/json"},
+		body : JSON.stringify(obj)
+	};
+	return fetch(`/TeamProject02/admin/member`, option)
+	.then(response => response.json())
+	.then(data => {
+		return data;
+	})
+	.catch(error => { console.log(error); });
+	
+}
+
+
+
+
