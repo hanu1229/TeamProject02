@@ -2,6 +2,7 @@ package brokerage.controller.estate;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -13,6 +14,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import brokerage.model.dao.EstateDao;
+import brokerage.model.dto.PropertyDto;
+import brokerage.model.dto.SellDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,64 +29,116 @@ public class EstateController extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("EstateController dopost!!");
-		// 업로드 경로 가져오기
-		String uploadPath = req.getServletContext().getRealPath("/upload");
-		System.out.println( uploadPath );
-		// 만일 해당 경로가 없으면 만들어주기.
-		File file = new File(uploadPath);
-		if( file.exists() ) {} // 경로가 존재하면 정적
-		else { file.mkdir(); } // 경로가 존재하지 않으면 경로 생성 // .mkdir() : 지정된 경로 폴더 생성 메소드
-		// 파일 업로드 설정 , DiskFileItemFactory클래스
-		System.out.println( file );
-		DiskFileItemFactory factory = new DiskFileItemFactory(); // 업로드 설정 객체 생성
-		factory.setRepository(file); // 업로드된 파일을 임시로 저장할 디렉터리를 설정
-		factory.setSizeThreshold( 1024 * 1024 * 1024 ); // 1gb
-		factory.setDefaultCharset("UTF-8"); // 한글 인코딩 설정
-		// 설정된 객체를 서블릿업로드 객체에 대입
-		ServletFileUpload fileupload = new ServletFileUpload( factory );
-		// HTTP 요청 객체 내 데이터 파싱/가져오기 ,
-		String filename = "default.pdf";
-		try {
-			List<FileItem> fileList = fileupload.parseRequest(req);
-			for( FileItem item : fileList ) { // 향상된 for문
-				// 만약에 조회중인 자료가 일반 텍스트이면
-				if( item.isFormField() ) {
-				}else { // 아니면 , 조회중인 자료가 첨부파일이면
-					if( !item.getName().isEmpty() ) { // 첨부파일이 비어있지 않으면
-						// UUID 이용한 첨부파일명 조합하기.
-						filename = UUID.randomUUID().toString() + "-" + item.getName().replaceAll("-", "_");
-						// 업로드할 경로와 파일명 조합하여 경로 만들기
-						File uploadFile = new File( uploadPath + "/" + filename );
-						// 지정한 경로에 업로드하기
-						item.write( uploadFile );
-					}
-				}
-			} // for end
-	}catch( Exception e ) { System.out.println( e ); }
+	    System.out.println("EstateController dopost!!");
+	    
+	    // 1. 업로드 경로 가져오기
+	    String uploadPath = req.getServletContext().getRealPath("/upload");
+	    System.out.println(uploadPath);
+
+	    // 2. 만일 해당 경로가 없으면 만들어주기.
+	    File file = new File(uploadPath);
+	    if (file.exists()) {} // 경로가 존재하면 아무 작업 안함
+	    else { file.mkdir(); } // 경로가 존재하지 않으면 경로 생성
+
+	    // 3. 파일 업로드 설정 , DiskFileItemFactory클래스
+	    System.out.println(file);
+	    DiskFileItemFactory factory = new DiskFileItemFactory(); // 업로드 설정 객체 생성
+	    factory.setRepository(file); // 업로드된 파일을 임시로 저장할 디렉터리를 설정
+	    factory.setSizeThreshold(1024 * 1024 * 1024); // 1GB 제한
+	    factory.setDefaultCharset("UTF-8"); // 한글 인코딩 설정
+
+	    // 4. 설정된 객체를 서블릿 업로드 객체에 대입
+	    ServletFileUpload fileupload = new ServletFileUpload(factory);
+
+	    // 5. HTTP 요청 객체 내 데이터 파싱
+	    String filename = "default.pdf";
+	    
+	    try {
+	        // 6. 파일 목록 가져오기
+	        List<FileItem> fileList = fileupload.parseRequest(req);
+	        SellDto sellDto = new SellDto(); // SellDto 객체 생성
+
+	        // 7. 파싱된 자료를 처리
+	        for (FileItem item : fileList) { 
+	            // 8. 일반 텍스트 필드일 경우 처리
+	            if (item.isFormField()) {
+	                if (item.getFieldName().equals("sadd")) {
+	                    sellDto.setSadd(item.getString("UTF-8")); // 추가 내용 (UTF-8 인코딩 적용)
+	                }
+	            } else { // 9. 첨부파일 처리
+	                if (!item.getName().isEmpty()) {
+	                    filename = UUID.randomUUID().toString() + "-" + item.getName().replaceAll("-", "_");
+	                    // 업로드할 경로와 파일명 조합하여 경로 만들기
+	                    File uploadFile = new File(uploadPath + "/" + filename);
+	                    item.write(uploadFile);
+	                    sellDto.setSfile(filename); // 업로드된 파일명을 DTO에 저장
+	                }
+	            }
+	        }
+
+	        // 10. 세션에서 로그인된 회원번호(mno) 가져오기
+	        HttpSession session = req.getSession(); // 세션 객체 가져오기
+	        Object object = session.getAttribute("loginMno"); // 세션에서 "loginMno" 가져오기
+	        
+	        if (object != null) {
+	            int loginMno = (Integer) object; // Object를 int로 변환
+	            sellDto.setMno(loginMno); // 로그인된 회원 번호를 SellDto에 설정
+	        }
+
+	        // 11. DTO 내용 확인 (디버깅용)
+	        System.out.println(sellDto);
+
+	        // 12. 매물 신청 저장 처리 (매물 신청 DB 저장)
+	        boolean result = EstateDao.getInstance().estateApply(sellDto);
+	        
+	        // 13. JSON 응답 반환
+	        resp.setContentType("application/json");
+	        resp.getWriter().print(result);
+	        
+	    } catch (Exception e) { System.out.println("업로드 실패 : " + e); }
 		
 		
 	} // f end
 	
+	// 본인 매물 출력
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("EstateController doget!!");
-		
-		
-		//List< Map<String,String> > result = EstateDao.getInstance().findByPno();
+		// 요청 매개변수 , mno 회원 번호 가져오기
+		int mno = Integer.parseInt( req.getParameter("mno") );
+		// dao에 매개변수 담아서 결과 받기
+		ArrayList<PropertyDto> result = EstateDao.getInstance().findByPno( mno );
+		// 조회한 결과를 JSON 형식으로 변환
 		ObjectMapper mapper = new ObjectMapper();
-		//String jsonResult = mapper.writeValueAsString( );
-		//resp.getContentType("application/json"); 
-		//resp.getWriter().print( jsonResult );
+		String jsonResult = mapper.writeValueAsString( result );
+		// HTTP 응답
+		resp.setContentType("application/json"); 
+		resp.getWriter().print( jsonResult );
 		
 	} // f end
+	
+	// 본인 매물 정보 수정
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("EstateController doput!!");
+	    ObjectMapper mapper = new ObjectMapper();
+	    PropertyDto propertyDto = mapper.readValue( req.getReader(), PropertyDto.class);
+	    boolean result = EstateDao.getInstance().estateUpdate(propertyDto);
+	    resp.setContentType("application/json");
+	    resp.getWriter().print(result);
+	    System.out.println("Received padd: " + propertyDto.getPadd());
+	    System.out.println("Received pno: " + propertyDto.getPno());
+
 	} // f end
+	
+	// 본인 매물 삭제
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("EstateController dodelete!!");
+		int pno = Integer.parseInt( req.getParameter("pno") );
+		boolean result = EstateDao.getInstance().estateDelete( pno );
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
 	} // f end
 	
 } // c end

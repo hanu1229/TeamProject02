@@ -38,7 +38,7 @@ create table sell_request(
 	# 신청번호
 	sno int unsigned auto_increment,
     # 첨부파일
-    sfile varchar(30) not null unique,
+    sfile varchar(255) not null unique,
     # 신청날짜
     sdate datetime default now(),
     # 신청상태
@@ -50,6 +50,7 @@ create table sell_request(
     constraint primary key(sno),
     constraint foreign key(mno) references member(mno)
 );
+select * from sell_request;
 
 # 매물신청 추가 --> sstate / 0 : 대기, 1 : 수락, 2 : 거절, 3 : 취소
 # 기본 : insert into sell_request(sfile, sadd, mno) values ('UUID_파일1.pdf', '최신식 엘리베이터', 5);
@@ -84,7 +85,7 @@ create table property(
     # 층수
     pstorey int,
     # 면적
-    parea decimal(10,2) not null,
+    parea double not null,
     # 준공년도
     pyear varchar(10) not null,
     # 구조
