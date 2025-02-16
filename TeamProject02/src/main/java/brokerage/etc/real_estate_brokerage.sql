@@ -206,8 +206,8 @@ insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일1
 insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일2.pdf', '김철수', '누수문제 숨김', 5, 2);
 insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일3.pdf', '김철수', '하부장 문제 있음', 5, 3);
 insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일4.pdf', '김철수', '곰팡이 심함', 1, 4);
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일5.pdf', '김철수', '곰팡이 심함', 1, 4);
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일6.pdf', '김철수', '곰팡이 심함', 1, 4);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일5.pdf', '김철수', '곰팡이 심함', 1, 5);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일6.pdf', '김철수', '곰팡이 심함', 1, 6);
 
 select * from member;
 select * from sell_request;
@@ -223,3 +223,5 @@ inner join photo as ph on ph.pno = p.pno where psell = 0;
 select p.*, m.*, ph.* from property as p 
 inner join member as m on m.mno = p.mno 
 inner join photo as ph on ph.pno = p.pno;
+
+select b.*, m.mname from brokerage as b inner join member as m on m.mno = b.mno;

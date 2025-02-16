@@ -33,3 +33,43 @@
 }
 
 /* admin-member.js end */
+
+/* admin-brokerage.js start */
+
+.ellipsis-text {
+	overflow : hidden;
+	text-overflow : ellipsis;
+}
+
+/* admin-brokerage.js end */
+
+/* admin-sell-request.js start */
+
+/* 테이블 높이를 제한하고, tbody에만 스크롤 추가 */
+.table-scroll {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-scroll thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 2;
+}
+
+
+.table-scroll tbody {
+    display: block;
+    overflow-y: auto;
+    /* 스크롤 높이 조정 */
+    max-height: 600px; 
+}
+
+.table-scroll tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* admin-sell-request.js end */

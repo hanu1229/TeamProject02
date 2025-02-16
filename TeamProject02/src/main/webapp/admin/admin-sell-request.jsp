@@ -13,10 +13,27 @@
 			<jsp:include page = "/admin/admin-header.jsp"></jsp:include>
 			<div id = "content" class = "content">
 				<h1>신청 매물 목록</h1>
+				<table id = "sell-table" class="table text-center table-scroll">
+					<thead class="table-light">
+						<tr>
+							<th>신청번호</th>
+							<th>신청파일</th>
+							<th>신청날짜</th>
+							<th>신청상태</th>
+							<th>추가내용</th>
+							<th>회원이름/번호</th>
+							<th>확인</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
 			</div>
 		</div>
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src = "/TeamProject02/js/admin/admin-login.js"></script>
+		<script src = "/TeamProject02/js/admin/admin-sell-request.js"></script>
 	</body>
 </html>
