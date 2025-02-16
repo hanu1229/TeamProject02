@@ -35,14 +35,19 @@ public class EstateDao extends Dao{
 	
 	
 	// 본인 매물 조회
-	public ArrayList<PropertyDto> findByPno( int mno ){
+	public ArrayList<PropertyDto> findByPno( int mno , int pcategory , int startRow , int display ){
 		ArrayList<PropertyDto> list = new ArrayList<PropertyDto>();
 		try {
-			String sql = " select * from property p inner join member m on p.mno = m.mno "
-					+ " where p.mno = ? "
-					+ " order by p.pno desc";
+			String sql = " select * from property p "
+					+ " inner join member  m on p.mno = m.mno "
+					+ " where p.mno = ? and p.pcategory = ? "
+					+ " order by p.pno desc "
+					+ " limit ? , ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, mno);
+			ps.setInt(2, pcategory);
+			ps.setInt(3, startRow);
+			ps.setInt(4, display);
 			ResultSet rs = ps.executeQuery();
 			while( rs.next() ) {
 				PropertyDto propertyDto = new PropertyDto();
@@ -65,6 +70,62 @@ public class EstateDao extends Dao{
 		return list;
 	} // f end
 	
+	// 카테고리 별 게시물 개수
+	public int getTotalSize( int pcategory ) {
+		try {
+			String sql = "select count(*) from property where pcategory = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, pcategory);
+			ResultSet rs = ps.executeQuery();
+			if( rs.next() ) { return rs.getInt( 1 ); }
+		}catch (Exception e) { System.out.println( e ); }
+		return 0;
+	} // f end
+	
+    // 카테고리 10일 경우 모든 매물 수 가져오는 메소드
+    public int getAllPropertiesSize() {
+        String sql = "SELECT COUNT(*) FROM property";  // 모든 매물 수 구하기
+        int totalSize = 0;
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                totalSize = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalSize;
+    } // f end
+    
+ // 카테고리 0일 경우 모든 매물 가져오는 메소드
+    public List<PropertyDto> getAllProperties(int mno, int startRow, int display) {
+        String sql = "SELECT * FROM property LIMIT ?, ?";  // 모든 매물 가져오기
+        List<PropertyDto> result = new ArrayList<>();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, startRow);
+            pstmt.setInt(2, display);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                PropertyDto propertyDto = new PropertyDto();
+                propertyDto.setPno(rs.getInt("pno") );
+                propertyDto.setPcategory(rs.getInt("pcategory") );
+                propertyDto.setPaddress(rs.getString("paddress") );
+                propertyDto.setPbuilding( rs.getInt("pbuilding") );
+                propertyDto.setPstorey(rs.getInt("pstorey") );
+                propertyDto.setParea(rs.getInt("parea") );
+                propertyDto.setPyear( rs.getString("pyear") );
+                propertyDto.setPstructure(rs.getString("pstructure") );
+                propertyDto.setPuser(rs.getString("puser") );
+                propertyDto.setPadd(rs.getString("padd") );
+                propertyDto.setPdate(rs.getString("pdate") );
+                propertyDto.setPsell(rs.getInt("psell") );
+                result.add(propertyDto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 	// 본인 매물 수정
 	public boolean estateUpdate(PropertyDto propertyDto) {
 	    try {

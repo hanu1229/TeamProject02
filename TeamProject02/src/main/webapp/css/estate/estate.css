@@ -9,7 +9,7 @@
 	background-color: #dbdbdb5e;
 }
 .estate_box {
-    max-height: 750px;
+    max-height: 800px;
     overflow: auto; /* 스크롤 */
 }
 .estate_table {

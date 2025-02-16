@@ -1,0 +1,224 @@
+/* console.log( 'estate_view.js open' );
+
+const findAll = () => {
+    const mno = new URL(location.href).searchParams.get("mno");
+    let pcategory = document.querySelector(".estateview_select").value;
+    let page = new URL(location.href).searchParams.get("page");
+    if (!page) page = 1;
+
+    fetch(`/TeamProject02/estate/info?mno=${mno}&pcategory=${pcategory}&page=${page}`)
+        .then((res) => res.json())  // 응답을 JSON 형태로 변환
+		.then((response) => {
+		    console.log("Response:", response);  // 응답 데이터 확인
+
+		    if (Array.isArray(response.properties) && response.properties.length > 0) {
+		        const estateTable = document.querySelector(".estate_table tbody");
+		        let html = ``;
+
+		        response.properties.forEach((property) => {
+		            html += `<tr>
+		                        <td>${property.pno}</td>
+		                        <td>${property.pcategory}</td>
+		                        <td>${property.paddress}</td>
+		                        <td>${property.pbuilding}</td>
+		                        <td>${property.pstorey}</td>
+		                        <td>${property.parea}</td>
+		                        <td>${property.pyear}</td>
+		                        <td>${property.pstructure}</td>
+		                        <td>${property.puser}</td>
+		                        <td>${property.padd}</td>
+		                        <td>${property.pdate}</td>
+		                        <td>${property.psell}</td>
+		                        <td>
+		                            <div class="btn-group" role="group">
+		                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#applyModal">신청</button>
+		                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
+		                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">삭제</button>
+		                            </div>
+		                        </td>
+		                    </tr>`;
+		        });
+
+		        estateTable.innerHTML = html;  // 테이블에 데이터 삽입
+		        getPageBtn(response, pcategory);  // 페이지 버튼 생성
+		    } else {
+		        console.log("No valid properties found.");
+		        document.querySelector(".estate_table tbody").innerHTML = "<tr><td colspan='12'>카테고리에 맞는 매물이 없습니다.</td></tr>";
+		    }
+		})
+        .catch((error) => {
+            // 데이터 요청 중 오류가 발생했을 때 처리
+            console.log(error);
+            document.querySelector(".estate_table tbody").innerHTML = "<tr><td colspan='12'>Error loading data</td></tr>";
+        });
+};
+
+// 셀렉트 박스 변경 시 데이터 갱신
+document.querySelector(".estateview_select").addEventListener("change", findAll);
+
+// 페이지 로드 시 데이터 요청
+findAll();
+
+// [3] 페이지 버튼 생성 함수 , 실행조건 : 게시물 출력 후
+const getPageBtn = ( response , pcategory ) => {
+	
+	page = parseInt( response.page ); // 정수로 타입 변환 함수.
+	// 1. 어디서
+	const pagebtnbox = document.querySelector('.pagebtnbox');
+	// 2. 무엇을
+	let html = '';	
+		// (1) 이전 버튼 , 만약에 현재페이지가 0또는음수 이면 1로 고정 , 아니면 -1
+	html +=	`<li class="page-item">
+				<a class="page-link" href="board.jsp?pcategory=${ pcategory }&page=${ page <= 1 ? 1 : page-1 }">
+					이전
+				</a>
+			</li>`
+	// * 1부터 10까지 버튼 만들기. // 최대페이지 , 버튼의 시작버튼 번호 , 버튼의 끝버튼 번호
+	// * startbtn 부터 endbtn 까지 버튼 만들기
+	// for( let index = 1 ; index <= 10; index++ ){
+	for( let index = response.startbtn ; index<= response.endbtn ; index++ ){
+		// 만약에 현재페이지가 index와 같다면 부트스트랩의 active 클래스 부여하기.
+		html += `<li class="page-item">
+					<a class="page-link" ${ page == index ? 'active' : ''} href="board.jsp?pcategory=1&page=${ index }">
+						${ index }
+					</a>
+				</li>`
+	} // for end
+		// (3) 다음 버튼
+	html +=	`<li class="page-item">
+				<a class="page-link" href="board.jsp?pcategory=${ pcategory }&page=${ page >= response.totalpage ? page : page+1 }">
+					다음
+				</a>
+			</li>`
+	// 3. 출력
+	pagebtnbox.innerHTML = html;
+} // f end */
+
+// 페이지네이션 버튼 클릭 시 데이터만 로드
+const getPageBtn = (response, pcategory) => {
+    const page = parseInt(response.currentPage); // 현재 페이지
+    const totalPage = response.totalPage; // 총 페이지 수
+    const startbtn = response.startbtn; // 시작 페이지 번호
+    const endbtn = response.endbtn; // 끝 페이지 번호
+
+    const pagebtnbox = document.querySelector('.pagebtnbox');
+    let html = '';
+
+    // (1) 이전 버튼
+    html += `<li class="page-item">
+                <a class="page-link" href="#" data-page="${page <= 1 ? 1 : page - 1}" data-pcategory="${pcategory}">
+                    이전
+                </a>
+            </li>`;
+
+    // (2) 페이지 번호 버튼
+    for (let index = startbtn; index <= endbtn; index++) {
+        html += `<li class="page-item">
+                    <a class="page-link" href="#" data-page="${index}" data-pcategory="${pcategory}">
+                        ${index}
+                    </a>
+                </li>`;
+    }
+
+    // (3) 다음 버튼
+    html += `<li class="page-item">
+                <a class="page-link" href="#" data-page="${page >= totalPage ? page : page + 1}" data-pcategory="${pcategory}">
+                    다음
+                </a>
+            </li>`;
+
+    // 페이지 버튼 HTML 삽입
+    pagebtnbox.innerHTML = html;
+
+    // 페이지네이션 버튼에 클릭 이벤트 리스너 추가
+    const pageLinks = document.querySelectorAll('.page-link');
+    pageLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // 기본 동작 방지 (페이지 이동 방지)
+            const newPage = e.target.getAttribute('data-page'); // 클릭된 페이지
+            const category = e.target.getAttribute('data-pcategory'); // 클릭된 카테고리
+
+            // 페이지 변경 시 데이터를 다시 가져와서 테이블 갱신
+            findAll(newPage, category);
+        });
+    });
+};
+
+// 페이지 데이터 가져오기
+const findAll = (page = 1, pcategory) => {
+    const mno = new URL(location.href).searchParams.get("mno"); // 현재 mno 값
+    const url = `/TeamProject02/estate/info?mno=${mno}&pcategory=${pcategory}&page=${page}`;
+
+    fetch(url)
+        .then((res) => res.json())  // 응답을 JSON 형태로 변환
+        .then((response) => {
+            // 페이지가 제대로 반영되었는지 확인
+            console.log('Current Page:', response.currentPage);
+            console.log('Total Pages:', response.totalPage);
+            console.log('Properties:', response.properties);
+            
+            // 테이블 내용 갱신
+            updateTable(response.properties);
+            // 페이지 버튼 갱신
+            getPageBtn(response, pcategory);
+        })
+        .catch((error) => {
+            console.log(error);
+            document.querySelector(".estate_table tbody").innerHTML = "<tr><td colspan='12'>Error loading data</td></tr>";
+        });
+};
+
+
+// 테이블 내용 갱신
+const updateTable = (properties) => {
+    const estateTable = document.querySelector(".estate_table tbody");
+    let html = '';
+
+    if (Array.isArray(properties) && properties.length > 0) {
+        properties.forEach((property) => {
+            html += `<tr>
+                        <td>${property.pno}</td>
+                        <td>${property.pcategory}</td>
+                        <td>${property.paddress}</td>
+                        <td>${property.pbuilding}</td>
+                        <td>${property.pstorey}</td>
+                        <td>${property.parea}</td>
+                        <td>${property.pyear}</td>
+                        <td>${property.pstructure}</td>
+                        <td>${property.puser}</td>
+                        <td>${property.padd}</td>
+                        <td>${property.pdate}</td>
+                        <td>${property.psell}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#applyModal">신청</button>
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">삭제</button>
+                            </div>
+                        </td>
+                    </tr>`;
+        });
+    } else {
+        html = "<tr><td colspan='12'>카테고리에 맞는 매물이 없습니다.</td></tr>";
+    }
+
+    estateTable.innerHTML = html;
+};
+
+// 초기 데이터 로드
+const initialLoad = () => {
+    const pcategory = document.querySelector(".estateview_select").value;
+    findAll(1, pcategory);
+};
+
+// 셀렉트 박스 변경 시 데이터 갱신
+document.querySelector(".estateview_select").addEventListener("change", (e) => {
+    const pcategory = e.target.value;
+    findAll(1, pcategory); // 페이지를 1로 리셋하고 새 카테고리 데이터 로드
+});
+
+// 페이지 로드 시 데이터 요청
+initialLoad();
+
+
+// 매물 수정 메소드
