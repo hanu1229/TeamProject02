@@ -13,16 +13,17 @@
 			<jsp:include page = "/admin/admin-header.jsp"></jsp:include>
 			<div id = "content" class = "content">
 				<h1>중개한 매물 목록</h1>
-				<table id = "brokerage-table" class="table text-center">
-					<thead>
+				<table id = "brokerage-table" class="table text-center table-bordered align-middle table-scroll">
+					<thead class = "table-light">
 						<tr>
-							<th>번호</th>
+							<th style = "width : 5%;">번호</th>
 							<th>파일</th>
 							<th>날짜</th>
 							<th>중개사</th>
 							<th>내용</th>
 							<th>회원명/회원번호</th>
-							<th>매물번호</th>
+							<th style = "width : 10%;">매물번호</th>
+							<th>다운로드</th>
 						</tr>
 					</thead>
 					<tbody>

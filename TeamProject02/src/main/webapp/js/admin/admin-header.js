@@ -27,7 +27,7 @@ function changeList(name) {
 	} else if(name === "admin-sell-request") {
 		location.href = "/TeamProject02/admin/admin-sell-request.jsp"
 	} else if(name === "admin-property") {
-		location.href = "/TeamProject02/admin/admin-property.jsp";
+		location.href = "/TeamProject02/admin/admin-property.jsp?page=1";
 	}
 }
 
@@ -35,6 +35,7 @@ function checkList() {
 	let url = location.href;
 	console.log(url);
 	url = url.split("/");
+	url[5] = url[5].split("?")[0];
 	console.log(url);
 	let adminMember = document.querySelector("#admin-member");
 	let adminBrokerage = document.querySelector("#admin-brokerage");

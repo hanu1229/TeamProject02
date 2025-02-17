@@ -19,7 +19,8 @@ public class AdminBrokerageDao extends Dao {
 	public ArrayList<BrokerageDto> findAll() {
 		ArrayList<BrokerageDto> result = new ArrayList<>();
 		try {
-			String sql = "select b.*, m.mname from brokerage as b inner join member as m on m.mno = b.mno;";
+			String sql = "select b.*, m.mname from brokerage as b "
+					+ "inner join member as m on m.mno = b.mno order by b.bno asc;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -35,5 +36,8 @@ public class AdminBrokerageDao extends Dao {
 		}
 		return result;
 	}
+	
+	/** 중개한 매물 파일 다운로드 */
+	
 	
 }

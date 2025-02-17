@@ -8,7 +8,7 @@ public class Dao {
 	protected Connection conn;
 	private String url = "jdbc:mysql://localhost:3306/real_estate_brokerage";
 	private String user = "root";
-	private String pwd = "hanu1229";
+	private String pwd = "1234";
 	
 	protected Dao() {
 		try {			

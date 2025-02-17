@@ -13,16 +13,16 @@
 			<jsp:include page = "/admin/admin-header.jsp"></jsp:include>
 			<div id = "content" class = "content">
 				<h1>신청 매물 목록</h1>
-				<table id = "sell-table" class="table text-center table-scroll">
+				<table id = "sell-table" class="table text-center table-bordered align-middle table-scroll">
 					<thead class="table-light">
 						<tr>
-							<th>신청번호</th>
-							<th>신청파일</th>
-							<th>신청날짜</th>
-							<th>신청상태</th>
-							<th>추가내용</th>
-							<th>회원이름/번호</th>
-							<th>확인</th>
+							<th style ="width : 10%;">신청번호</th>
+							<th style ="width : 13%;">신청파일</th>
+							<th style ="width : 20%;">신청날짜</th>
+							<th style ="width : 7%;">신청상태</th>
+							<th style ="width : 20%;">추가내용</th>
+							<th style ="width : 10%;">회원이름/번호</th>
+							<th style ="width : 20%;">확인</th>
 						</tr>
 					</thead>
 					<tbody>

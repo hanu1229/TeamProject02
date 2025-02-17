@@ -13,8 +13,8 @@
 			<jsp:include page = "/admin/admin-header.jsp"></jsp:include>
 			<div id = "content" class = "content">
 				<h1>회원목록</h1>
-				<table id = "member-table" class="table text-center">
-					<thead>
+				<table id = "member-table" class="table text-center table-bordered align-middle table-scroll">
+					<thead class = "table-light">
 						<tr>
 							<th scope="col">회원번호</th>
 							<th scope="col">아이디</th>

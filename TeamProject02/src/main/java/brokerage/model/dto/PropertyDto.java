@@ -39,4 +39,6 @@ public class PropertyDto {
 	private int psell;
 	// 회원번호 FK
 	private int mno;
+	// 회원이름
+	private String mname;
 } // c end
