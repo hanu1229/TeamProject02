@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import brokerage.model.dao.admin.AdminBrokerageDao;
@@ -45,31 +48,43 @@ public class AdminBrokerageController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> AdminBrokerage 중개한 매물 파일 다운로드(doPost) 실행");
 		
-		String fileName = req.getParameter("file");
-		String filePath = "C:/Users/tj-bu-702-12/Desktop/hanu1229/tj2024b_web/.metadata/.plugins/"
-				+ "org.eclipse.wst.server.core/tmp0/wtpwebapps/TeamProject02/upload/brokerage/" + fileName;
+		//String fileName = req.getParameter("file");
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, String> map = mapper.readValue(req.getReader(), new TypeReference<HashMap<String, String>>() {});
+		String fileName = map.get("file");
+		System.out.println("fileName : " + fileName);
+		// 톰캣 서버의 경로를 가져와서 + /upload/brokerage/ 경로를 붙이고 + fileName을 붙임
+		String filePath = req.getServletContext().getRealPath("/upload/brokerage/") + fileName;
+		System.out.println("filePath : " + filePath);
 		File downloadFile = new File(filePath);
 		FileInputStream inStream = new FileInputStream(downloadFile);
+		// PDF MIME 타입 설정
 		String mimeType = getServletContext().getMimeType(filePath);
 		if(mimeType == null) {
 			mimeType = "application/pdf";
 		}
 		resp.setContentType(mimeType);
+		// 파일의 크기
 		resp.setContentLengthLong((int)downloadFile.length());
 		
 		// 파일 다운로드 헤더 설정
 		String encodedFileName = URLEncoder.encode(downloadFile.getName(), "UTF-8").replaceAll("\\+", "%20");
+		// Content-Disposition : attachment 설정으로 강제 다운로드
 		resp.setHeader("Content-Disposition", "attachment; filename=\"" + encodedFileName + "\"");
+		// GZip 압축 방지--> pdf 파일을 보내기 위해서는 필수
+		resp.setHeader("Content-Encoding", "identity");
 		
 		// 클라이언트에 파일 전송
 		OutputStream outStream = resp.getOutputStream();
-		byte[] buffer = new byte[4096];
+		byte[] buffer = new byte[8192];
 		int bytesRead;
+		// 파일을 끝까지 읽었는지 확인
 		while((bytesRead = inStream.read(buffer)) != -1) {
 			outStream.write(buffer, 0, bytesRead);
 		}
 		
 		inStream.close();
+		outStream.flush();
 		outStream.close();
 		 
 		System.out.println(">> AdminBrokerage 중개한 매물 파일 다운로드(doPost) 종료\n");		

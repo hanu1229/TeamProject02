@@ -37,17 +37,31 @@ printAll();
 
 /** 다운로드 버튼 클릭 시 파일 다운로드 */
 function downloadFile(bfile) {
-	const option = {method : "GET"};
-    fetch(`/TeamProject02/admin/brokerage?file=${bfile}`, option)
-    .then(response => response.blob())  // 파일 데이터를 Blob 형식으로 변환
+	const option = {
+		method : "POST",
+		headers : {"Content-Type" : "application/json"},
+		body : JSON.stringify({file : bfile})
+	};
+    fetch(`/TeamProject02/admin/brokerage`, option)
+	// response.bolb() : 서버에서 응답을 Blob(바이너리 데이터)로 변환
+    .then(response => response.blob())  
     .then(blob => {
+		// Bolb 데이터를 가리키는 임시 URL 생성
 		const url = window.URL.createObjectURL(blob);
+		console.log("url : " + url);
+		// <a> 태그 생성
         const a = document.createElement("a");
+		// <a> 태그의 링크를 임시 URL로 변경
         a.href = url;
-        a.download = "sample.pdf";  // 저장할 파일명 지정
+		// 다운로드 될 파일명 지정
+        a.download = `${bfile}.pdf`;
+		// <a> 태그를 문서의 body에 추가 (클릭 이벤트를 실행하기 위함)
         document.body.appendChild(a);
+		// <a> 태그를 자동으로 클릭하여 다운로드 실행
         a.click();
+		// <a> 태그를 문서에서 제거
         a.remove();
+		// 임시 URL을 삭제(해제)해서 메모리 누수 방지
         window.URL.revokeObjectURL(url);
     })
     .catch(error => console.error("파일 다운로드 오류:", error));
