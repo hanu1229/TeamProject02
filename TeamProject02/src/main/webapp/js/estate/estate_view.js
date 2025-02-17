@@ -1,98 +1,4 @@
-/* console.log( 'estate_view.js open' );
-
-const findAll = () => {
-    const mno = new URL(location.href).searchParams.get("mno");
-    let pcategory = document.querySelector(".estateview_select").value;
-    let page = new URL(location.href).searchParams.get("page");
-    if (!page) page = 1;
-
-    fetch(`/TeamProject02/estate/info?mno=${mno}&pcategory=${pcategory}&page=${page}`)
-        .then((res) => res.json())  // 응답을 JSON 형태로 변환
-		.then((response) => {
-		    console.log("Response:", response);  // 응답 데이터 확인
-
-		    if (Array.isArray(response.properties) && response.properties.length > 0) {
-		        const estateTable = document.querySelector(".estate_table tbody");
-		        let html = ``;
-
-		        response.properties.forEach((property) => {
-		            html += `<tr>
-		                        <td>${property.pno}</td>
-		                        <td>${property.pcategory}</td>
-		                        <td>${property.paddress}</td>
-		                        <td>${property.pbuilding}</td>
-		                        <td>${property.pstorey}</td>
-		                        <td>${property.parea}</td>
-		                        <td>${property.pyear}</td>
-		                        <td>${property.pstructure}</td>
-		                        <td>${property.puser}</td>
-		                        <td>${property.padd}</td>
-		                        <td>${property.pdate}</td>
-		                        <td>${property.psell}</td>
-		                        <td>
-		                            <div class="btn-group" role="group">
-		                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#applyModal">신청</button>
-		                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
-		                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">삭제</button>
-		                            </div>
-		                        </td>
-		                    </tr>`;
-		        });
-
-		        estateTable.innerHTML = html;  // 테이블에 데이터 삽입
-		        getPageBtn(response, pcategory);  // 페이지 버튼 생성
-		    } else {
-		        console.log("No valid properties found.");
-		        document.querySelector(".estate_table tbody").innerHTML = "<tr><td colspan='12'>카테고리에 맞는 매물이 없습니다.</td></tr>";
-		    }
-		})
-        .catch((error) => {
-            // 데이터 요청 중 오류가 발생했을 때 처리
-            console.log(error);
-            document.querySelector(".estate_table tbody").innerHTML = "<tr><td colspan='12'>Error loading data</td></tr>";
-        });
-};
-
-// 셀렉트 박스 변경 시 데이터 갱신
-document.querySelector(".estateview_select").addEventListener("change", findAll);
-
-// 페이지 로드 시 데이터 요청
-findAll();
-
-// [3] 페이지 버튼 생성 함수 , 실행조건 : 게시물 출력 후
-const getPageBtn = ( response , pcategory ) => {
-	
-	page = parseInt( response.page ); // 정수로 타입 변환 함수.
-	// 1. 어디서
-	const pagebtnbox = document.querySelector('.pagebtnbox');
-	// 2. 무엇을
-	let html = '';	
-		// (1) 이전 버튼 , 만약에 현재페이지가 0또는음수 이면 1로 고정 , 아니면 -1
-	html +=	`<li class="page-item">
-				<a class="page-link" href="board.jsp?pcategory=${ pcategory }&page=${ page <= 1 ? 1 : page-1 }">
-					이전
-				</a>
-			</li>`
-	// * 1부터 10까지 버튼 만들기. // 최대페이지 , 버튼의 시작버튼 번호 , 버튼의 끝버튼 번호
-	// * startbtn 부터 endbtn 까지 버튼 만들기
-	// for( let index = 1 ; index <= 10; index++ ){
-	for( let index = response.startbtn ; index<= response.endbtn ; index++ ){
-		// 만약에 현재페이지가 index와 같다면 부트스트랩의 active 클래스 부여하기.
-		html += `<li class="page-item">
-					<a class="page-link" ${ page == index ? 'active' : ''} href="board.jsp?pcategory=1&page=${ index }">
-						${ index }
-					</a>
-				</li>`
-	} // for end
-		// (3) 다음 버튼
-	html +=	`<li class="page-item">
-				<a class="page-link" href="board.jsp?pcategory=${ pcategory }&page=${ page >= response.totalpage ? page : page+1 }">
-					다음
-				</a>
-			</li>`
-	// 3. 출력
-	pagebtnbox.innerHTML = html;
-} // f end */
+console.log('estate_view!!');
 
 // 페이지네이션 버튼 클릭 시 데이터만 로드
 const getPageBtn = (response, pcategory) => {
@@ -191,9 +97,10 @@ const updateTable = (properties) => {
                         <td>${property.psell}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#applyModal">신청</button>
-                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateModal">수정</button>
-                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">삭제</button>
+                                <button type="button" class="btn btn-outline-dark eUpdate" data-bs-toggle="modal" data-bs-target="#updateModal" 
+									data-pno="${property.pno}" data-padd="${property.padd}">수정</button>
+                                <button type="button" class="btn btn-outline-dark eDelete" data-bs-toggle="modal" data-bs-target="#deleteModal"
+									data-pno="${property.pno}">삭제</button>
                             </div>
                         </td>
                     </tr>`;
@@ -220,5 +127,26 @@ document.querySelector(".estateview_select").addEventListener("change", (e) => {
 // 페이지 로드 시 데이터 요청
 initialLoad();
 
-
-// 매물 수정 메소드
+/*
+// 매물 수정 메소드 (기존 데이터 출력)
+const eUpdate = ( ) => {
+	console.log("eUpdate");
+	// 입력 받은 자료 / 값 가져오기
+	const padd = document.querySelector('.evalue').value; // 수정할 내용
+	const pno = document.querySelector('.update-pno').value; // 수정할 pno
+	// 객체화
+	const obj = { pno : pno , padd : padd }
+	// fetch
+	const option = {
+		method : 'PUT' ,
+		headers : { 'ContentType' : 'application/json' },
+		body : JSON.stringify( obj )
+	}
+	fetch( `/TeamProject02/estate/info?pno=${pno}` , option )
+		.then( response => response.json() )
+		.then( data => {
+			if( data == true ){ alert( '수정 성공'); location.href = "estateview.jsp"; }
+			else{ alert('수정 실패'); }
+		}) // then end
+		.catch( error => { console.log( error); } )
+} // f end */

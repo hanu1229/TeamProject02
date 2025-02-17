@@ -59,7 +59,9 @@
 			<div class="offcanvas-body">
 			  <div class="d-grid gap-2">
 				  <button class="btn btn-outline-dark" type="button">회원정보수정</button>
-				  <button class="btn btn-outline-dark" type="button">본인매물조회</button>
+				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
+				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estatewrite.jsp'">매물등록신청</button>
+				  <button class="btn btn-outline-dark Hlogout" type="button">로그아웃</button>				  
 				</div>
 			</div>
 		</div>

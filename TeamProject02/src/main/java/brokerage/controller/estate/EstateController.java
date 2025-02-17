@@ -112,18 +112,6 @@ public class EstateController extends HttpServlet{
 	    String pcategoryStr = req.getParameter("pcategory");  // 카테고리 번호 (0: 아파트, 1: 주택, 2: 오피스텔 등)
 	    String pageStr = req.getParameter("page");  // 페이지 번호
 
-	    // pcategory나 page가 null이거나 비어있으면 처리하기
-	    if (pcategoryStr == null || pcategoryStr.isEmpty()) {
-	        // 예외 처리: pcategory 값이 없으면 적절한 메시지를 클라이언트에 반환
-	        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "pcategory 파라미터가 없습니다.");
-	        return;
-	    }
-	    if (pageStr == null || pageStr.isEmpty()) {
-	        // 예외 처리: page 값이 없으면 적절한 메시지를 클라이언트에 반환
-	        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "page 파라미터가 없습니다.");
-	        return;
-	    }
-
 	    // pcategory와 page를 숫자로 변환
 	    int pcategory = Integer.parseInt(pcategoryStr);  // 카테고리 번호 (0, 1, 2 등)
 	    int page = Integer.parseInt(pageStr);  // 페이지 번호
@@ -181,66 +169,22 @@ public class EstateController extends HttpServlet{
 	    resp.setContentType("application/json");
 	    resp.getWriter().print(jsonResult);
 	} // f end
-
-	
-//	// 본인 매물 출력
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//	    System.out.println("EstateController doget!!");
-//	    
-//	    // 세션에서 로그인된 회원번호(mno) 가져오기
-//	    HttpSession session = req.getSession(); 
-//	    Object object = session.getAttribute("loginMno"); 
-//	    
-//	    // 세션에 로그인 정보가 없을 경우 기본값 1로 설정
-//	    int mno = (object != null) ? (Integer) object : 1; // 세션에 로그인된 회원번호 없으면 기본값 1
-//	    
-//	    // 요청 매개변수, mno 회원 번호 / page 번호 가져오기
-//	    int pcategory = Integer.parseInt( req.getParameter("pcategory") );
-//	    int page = Integer.parseInt( req.getParameter("page") );
-//
-//	    // 페이징 처리에 필요한 자료를 준비
-//	    int display = 10; // 페이지당 10개
-//	    int startRow = (page - 1) * display;
-//	    int totalSize = EstateDao.getInstance().getTotalSize( pcategory );
-//	    int totalPage = (totalSize % display == 0) ? (totalSize / display) : (totalSize / display + 1);
-//	    int btnSize = 5;
-//	    int startBtn = ((page - 1) / btnSize) * btnSize + 1;
-//	    int endBtn = startBtn + (btnSize - 1);
-//	    if (endBtn > totalPage) endBtn = totalPage;
-//
-//	    // DAO에서 매물 목록 조회
-//	    ArrayList<PropertyDto> result = EstateDao.getInstance().findByPno(mno, pcategory, startRow, display);
-//
-//	    // 페이지 정보 설정
-//	    PageDto pageDto = new PageDto();
-//	    pageDto.setTotalPage(totalSize);
-//	    pageDto.setCurrentPage(page);
-//	    pageDto.setTotalPage(totalPage);
-//	    pageDto.setStartbtn(startBtn);
-//	    pageDto.setEndbtn(endBtn);
-//	    pageDto.setData(result);
-//
-//	    // 결과를 JSON으로 변환하여 응답
-//	    ObjectMapper mapper = new ObjectMapper();
-//	    String jsonResult = mapper.writeValueAsString(result);
-//	    resp.setContentType("application/json");
-//	    resp.getWriter().print(jsonResult);
-//	} // f end
 	
 	// 본인 매물 정보 수정
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("EstateController doput!!");
+	    System.out.println("EstateController doput!!");
 	    ObjectMapper mapper = new ObjectMapper();
-	    PropertyDto propertyDto = mapper.readValue( req.getReader(), PropertyDto.class);
-	    boolean result = EstateDao.getInstance().estateUpdate(propertyDto);
-	    resp.setContentType("application/json");
-	    resp.getWriter().print(result);
+	    PropertyDto propertyDto = mapper.readValue(req.getReader(), PropertyDto.class);
+
+	    // 클라이언트에서 전달된 값 확인
 	    System.out.println("Received padd: " + propertyDto.getPadd());
 	    System.out.println("Received pno: " + propertyDto.getPno());
 
-	} // f end
+	    boolean result = EstateDao.getInstance().estateUpdate(propertyDto);
+	    resp.setContentType("application/json");
+	    resp.getWriter().print(result);
+	}
 	
 	// 본인 매물 삭제
 	@Override
