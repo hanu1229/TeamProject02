@@ -38,7 +38,7 @@ create table sell_request(
 	# 신청번호
 	sno int unsigned auto_increment,
     # 첨부파일
-    sfile varchar(30) not null unique,
+    sfile varchar(255) not null unique,
     # 신청날짜
     sdate datetime default now(),
     # 신청상태
@@ -54,16 +54,46 @@ create table sell_request(
 # 매물신청 추가 --> sstate / 0 : 대기, 1 : 수락, 2 : 거절, 3 : 취소
 # 기본 : insert into sell_request(sfile, sadd, mno) values ('UUID_파일1.pdf', '최신식 엘리베이터', 5);
 insert into sell_request(sfile, sadd, mno, sstate) values
-('UUID_파일1.pdf', '올수리', 5, 1), ('UUID_파일2.pdf', '시스템에어컨2대', 5, 1), ('UUID_파일3.pdf', '부평시장역 도보 10분', 5, 1), ('UUID_파일4.pdf', '샷시 최근 교체', 5, 1),
-('UUID_파일5.pdf', '아주 깨끗하고 조용하고 밝은 집', 5, 1), ('UUID_파일6.pdf', '부평구청역 도보 6분', 5, 1), ('UUID_파일7.pdf', '확장형, 7호선 초역세단', 5, 1), ('UUID_파일8.pdf', '역세권 도보 3분거리', 5, 1),
-('UUID_파일9.pdf', '부평시작역 도보', 5, 1), ('UUID_파일10.pdf', '부평구청역 역세권', 5, 1), ('UUID_파일11.pdf', '시스템에어컨4대.줄눈.탄성.팬트리.서재', 5, 1), ('UUID_파일12.pdf', '내부 특올수리 남향 주차환경 우수함', 5, 1),
-('UUID_파일13.pdf', '삼성 비스포크', 5, 1), ('UUID_파일14.pdf', '서울외곽고속도로 접근 수월', 5, 1), ('UUID_파일15.pdf', '남향, 주차환경 우수', 5, 1), ('UUID_파일16.pdf', '리모델링 완료, 남향', 5, 1),
-('UUID_파일17.pdf', '대단지, 편의시설 완비', 5, 1), ('UUID_파일18.pdf', '"리모델링 완료, 남향', 5, 1), ('UUID_파일19.pdf', '남향, 주차환경 우수', 5, 1), ('UUID_파일20.pdf', '리모델링 완료, 남향', 5, 1),
-('UUID_파일21.pdf', '쾌적한 편의시설', 1, 1), ('UUID_파일22.pdf', '나무 많음', 1, 1), ('UUID_파일23.pdf', '산책로', 1, 1), ('UUID_파일24.pdf', '꺠끗함', 1, 1),
-('UUID_파일25.pdf', '쾌적한 편의시설', 1, 1), ('UUID_파일26.pdf', '시스템 에어컨', 1, 1), ('UUID_파일27.pdf', '조용함', 1, 1), ('UUID_파일28.pdf', '감각적인 인테리어', 1, 1),
-('UUID_파일29.pdf', '정원 보유', 1, 1), ('UUID_파일30.pdf', '산책로', 1, 1), ('UUID_파일31.pdf', '방마다 시스템 에어컨', 1, 1), ('UUID_파일32.pdf', '남서향 고층 호수뷰', 1, 1),
-('UUID_파일33.pdf', '올수리 및 김치냉장고', 1, 1), ('UUID_파일34.pdf', '넓은 동간 사이', 1, 1), ('UUID_파일35.pdf', '올수리 및 7호선 인접', 1, 1), ('UUID_파일36.pdf', '저층이지만 채광 좋음', 1, 1),
-('UUID_파일37.pdf', '호수전망 , 펜트리', 1, 1), ('UUID_파일38.pdf', '에어컨 5대', 1, 1), ('UUID_파일39.pdf', '올수리 경기장뷰', 1, 1), ('UUID_파일40.pdf', '채광 좋음', 1, 1);
+('sell_파일1.pdf', '올수리', 5, 1),
+('sell_파일2.pdf', '시스템에어컨2대', 5, 1),
+('sell_파일3.pdf', '부평시장역 도보 10분', 5, 1),
+('sell_파일4.pdf', '샷시 최근 교체', 5, 1),
+('sell_파일5.pdf', '아주 깨끗하고 조용하고 밝은 집', 5, 1),
+('sell_파일6.pdf', '부평구청역 도보 6분', 5, 1),
+('sell_파일7.pdf', '확장형, 7호선 초역세단', 5, 1),
+('sell_파일8.pdf', '역세권 도보 3분거리', 5, 1),
+('sell_파일9.pdf', '부평시작역 도보', 5, 1),
+('sell_파일10.pdf', '부평구청역 역세권', 5, 1),
+('sell_파일11.pdf', '시스템에어컨4대.줄눈.탄성.팬트리.서재', 5, 1),
+('sell_파일12.pdf', '내부 특올수리 남향 주차환경 우수함', 5, 1),
+('sell_파일13.pdf', '삼성 비스포크', 5, 1),
+('sell_파일14.pdf', '서울외곽고속도로 접근 수월', 5, 1),
+('sell_파일15.pdf', '남향, 주차환경 우수', 5, 1),
+('sell_파일16.pdf', '리모델링 완료, 남향', 5, 1),
+('sell_파일17.pdf', '대단지, 편의시설 완비', 5, 1),
+('sell_파일18.pdf', '"리모델링 완료, 남향', 5, 1),
+('sell_파일19.pdf', '남향, 주차환경 우수', 5, 1),
+('sell_파일20.pdf', '리모델링 완료, 남향', 5, 1),
+('sell_파일21.pdf', '쾌적한 편의시설', 1, 1),
+('sell_파일22.pdf', '나무 많음', 1, 1),
+('sell_파일23.pdf', '산책로', 1, 1),
+('sell_파일24.pdf', '꺠끗함', 1, 1),
+('sell_파일25.pdf', '쾌적한 편의시설', 1, 1),
+('sell_파일26.pdf', '시스템 에어컨', 1, 1),
+('sell_파일27.pdf', '조용함', 1, 1),
+('sell_파일28.pdf', '감각적인 인테리어', 1, 1),
+('sell_파일29.pdf', '정원 보유', 1, 1),
+('sell_파일30.pdf', '산책로', 1, 1),
+('sell_파일31.pdf', '방마다 시스템 에어컨', 1, 1),
+('sell_파일32.pdf', '남서향 고층 호수뷰', 1, 1),
+('sell_파일33.pdf', '올수리 및 김치냉장고', 1, 1),
+('sell_파일34.pdf', '넓은 동간 사이', 1, 1),
+('sell_파일35.pdf', '올수리 및 7호선 인접', 1, 1),
+('sell_파일36.pdf', '저층이지만 채광 좋음', 1, 1),
+('sell_파일37.pdf', '호수전망 , 펜트리', 1, 1),
+('sell_파일38.pdf', '에어컨 5대', 1, 1),
+('sell_파일39.pdf', '올수리 경기장뷰', 1, 1),
+('sell_파일40.pdf', '채광 좋음', 1, 1);
 
 
 # 매물테이블
@@ -162,7 +192,7 @@ create table photo(
 	# 사진번호
 	phno int unsigned auto_increment,
     # 사진이름
-    phname varchar(30) not null unique,
+    phname varchar(255) not null unique,
     # 매물번호
     pno int unsigned,
     constraint primary key(phno),
@@ -171,12 +201,12 @@ create table photo(
 
 # 사진 추가 --> sno / 0 : 
 # 기본 : 
-insert into photo(phname, pno) values ('사진1.jpg', 1);
-insert into photo(phname, pno) values ('사진2.jpg', 2);
-insert into photo(phname, pno) values ('사진3.jpg', 4);
-insert into photo(phname, pno) values ('사진4.jpg', 5);
-insert into photo(phname, pno) values ('사진5.jpg', 1);
-insert into photo(phname, pno) values ('사진6.jpg', 4);
+insert into photo(phname, pno) values ('photo_사진1.jpg', 1);
+insert into photo(phname, pno) values ('photo_사진2.jpg', 2);
+insert into photo(phname, pno) values ('photo_사진3.jpg', 4);
+insert into photo(phname, pno) values ('photo_사진4.jpg', 5);
+insert into photo(phname, pno) values ('photo_사진5.jpg', 1);
+insert into photo(phname, pno) values ('photo_사진6.jpg', 4);
 
 # 중개한매물테이블
 drop table if exists brokerage;
@@ -184,7 +214,7 @@ create table brokerage(
 	# 중개번호
 	bno int unsigned auto_increment,
     # 파일명
-    bfile varchar(30) not null unique,
+    bfile varchar(255) not null unique,
     # 승인날짜
     bdate datetime default now(),
     # 담당자
@@ -202,12 +232,12 @@ create table brokerage(
 
 # 중개한매물 추가
 # 주의할 점 : 파일에 적힌 날짜랑 승인날짜는 다를 수 있음. 파일에 적힌 날짜는 실제 소유주가 바뀐 날짜이고 데이터베이스의 승인날짜는 계약한 날짜이다
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일1.pdf', '김철수', '집주인 깐깐함', 5, 1);
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일2.pdf', '김철수', '누수문제 숨김', 5, 2);
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일3.pdf', '김철수', '하부장 문제 있음', 5, 3);
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일4.pdf', '김철수', '곰팡이 심함', 1, 4);
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일5.pdf', '김철수', '곰팡이 심함', 1, 5);
-insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('UUID_파일6.pdf', '김철수', '곰팡이 심함', 1, 6);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('brokerage_파일1.pdf', '김철수', '집주인 깐깐함', 5, 1);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('brokerage_파일2.pdf', '김철수', '누수문제 숨김', 5, 2);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('brokerage_파일3.pdf', '김철수', '하부장 문제 있음', 5, 3);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('brokerage_파일4.pdf', '김철수', '곰팡이 심함', 1, 4);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('brokerage_파일5.pdf', '김철수', '곰팡이 심함', 1, 5);
+insert into brokerage(bfile, bmanager, bcomment, mno, pno) values ('brokerage_파일6.pdf', '김철수', '곰팡이 심함', 1, 6);
 
 select * from member;
 select * from sell_request;
@@ -224,4 +254,4 @@ select p.*, m.*, ph.* from property as p
 inner join member as m on m.mno = p.mno 
 inner join photo as ph on ph.pno = p.pno;
 
-select b.*, m.mname from brokerage as b inner join member as m on m.mno = b.mno;
+select b.*, m.mname from brokerage as b inner join member as m on m.mno = b.mno order by b.bno asc;
