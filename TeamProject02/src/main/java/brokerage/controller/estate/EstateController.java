@@ -184,7 +184,7 @@ public class EstateController extends HttpServlet{
 	    boolean result = EstateDao.getInstance().estateUpdate(propertyDto);
 	    resp.setContentType("application/json");
 	    resp.getWriter().print(result);
-	}
+	} // f end
 	
 	// 본인 매물 삭제
 	@Override

@@ -1,0 +1,3 @@
+const eDelete = () => {
+	
+} // f end
