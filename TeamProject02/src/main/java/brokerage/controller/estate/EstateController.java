@@ -28,6 +28,7 @@ import jakarta.websocket.Session;
 @WebServlet("/estate/info")
 public class EstateController extends HttpServlet{
 
+	// 첨부파일 넣어서 등록 등록
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    System.out.println("EstateController dopost!!");
@@ -101,73 +102,59 @@ public class EstateController extends HttpServlet{
 		
 	} // f end
 	
+	// 매물 조회
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    System.out.println("estateController doGet ok");
+		// 요청 매개변수 , pcategory 카테고리 번호 , page 번호 가져오기
+		int pcategory = Integer.parseInt( req.getParameter("pcategory") );
+		int page = Integer.parseInt( req.getParameter("page") );
+		
+	    // 세션에서 mno 가져오기 (나중에 실제 로그인 정보를 사용하도록 변경)
+	    // int mno = (int) req.getSession().getAttribute("loginMno"); // 세션에서 mno를 받아서 사용
+	    int mno = 1;  // 현재는 테스트를 위해 1로 설정
+	    
+			// 페이징 처리에 필요한 자료를 준비
+			// 1. 페이지당 출력할 매물 수
+			int display = 10; // 페이지 1개당 매물 10개 출력할 예정
+			// 2. 페이지당 조회할 게시물의 시작 번호
+			int startRow = (page-1) * display;
+			// 3. 특정 카테고리 게시물의 전체 페이지 수 구하기
+			int totalSize = EstateDao.getInstance().getTotalSize(pcategory);
+			// 4. 전체 페이지
+			int totalPage = 0;
+			if( totalPage % display == 0 ) {
+				totalPage = totalSize / display;
+			}else {
+				totalPage = totalSize / display +1 ; // 몫 +1
+			}
+			// 5. 페이지당 버튼 수
+			int btnSize = 5;
+			// 6. 시작버튼 번호 구하기
+			int startBtn = ( (page-1) / btnSize ) * btnSize+1;
+			// 7. 끝버튼 번호 구하기
+			int endBtn = startBtn + ( btnSize - 1);
+			// 만약 끝번호가 전체 페이지 수 보다 커지면 안되므로 끝 번호가 전체페이지 수 보다 커지면 전체 페이지 수 로 고정
+			if( endBtn > totalPage ) endBtn = totalPage;
+		
+		// DAO에게 전체 게시물 요청 하고 결과 받기 , 매개변수 넣기
+		ArrayList<PropertyDto> result = EstateDao.getInstance().findAll( mno , pcategory , startRow , display );
+			
+			// 8. PageDto 객체 만들기
+			PageDto pageDto = new PageDto();
+		    pageDto.setTotalPage(totalPage); // 전체 페이지 수
+		    pageDto.setCurrentPage(page);    // 현재 페이지
+		    pageDto.setStartbtn(startBtn);   // 페이징 버튼 시작 번호
+		    pageDto.setEndbtn(endBtn);       // 페이징 버튼 끝 번호
+		    pageDto.setProperties(result);   // 매물 목록 (List<PropertyDto>)
 
-	    // 기본 mno 설정 (로그인 전에는 1로 설정, 나중에 세션에서 로그인한 회원 번호를 받아올 것)
-	    int mno = 1;  // 임시로 1로 설정, 로그인 후에는 세션에서 mno 값을 받아올 것
-
-	    // [1] 요청 매개변수: pcategory (카테고리 번호), page (페이지 번호) 가져오기
-	    String pcategoryStr = req.getParameter("pcategory");  // 카테고리 번호 (0: 아파트, 1: 주택, 2: 오피스텔 등)
-	    String pageStr = req.getParameter("page");  // 페이지 번호
-
-	    // pcategory와 page를 숫자로 변환
-	    int pcategory = Integer.parseInt(pcategoryStr);  // 카테고리 번호 (0, 1, 2 등)
-	    int page = Integer.parseInt(pageStr);  // 페이지 번호
-
-	    // * 페이징 처리에 필요한 자료 준비
-	    int display = 10;  // 한 페이지에 출력할 매물 수 (10개)
-	    int startRow = (page - 1) * display;  // 페이지 시작 번호 계산
-
-	    // [2] EstateDao에게 본인 매물 요청하고 결과 받기
-	    int totalSize = EstateDao.getInstance().getTotalSize(pcategory);  // 해당 카테고리 매물의 전체 수 구하기
-
-	    // 3. 전체 페이지 수 계산
-	    int totalPage = (totalSize % display == 0) ? totalSize / display : totalSize / display + 1;
-
-	    // totalPage가 0일 경우에는 페이지네이션을 표시하지 않도록 처리
-	    if (totalPage == 0) {
-	        resp.setContentType("application/json");
-	        resp.getWriter().print("{}");  // 빈 JSON 반환
-	        return;
-	    }
-
-	    // 페이지 번호가 totalPage를 초과할 경우, 마지막 페이지로 설정
-	    if (page > totalPage) {
-	        page = totalPage;
-	    }
-
-	    // 4. 페이지 버튼의 개수 (5개 버튼씩 출력)
-	    int btnSize = 5;
-
-	    // 5. 시작 버튼 번호 구하기
-	    int startBtn = ((page - 1) / btnSize) * btnSize + 1;
-
-	    // 6. 끝 버튼 번호 구하기
-	    int endBtn = startBtn + (btnSize - 1);
-
-	    // 만약 끝 버튼 번호가 전체 페이지 수보다 크면 끝 번호를 전체 페이지 수로 설정
-	    if (endBtn > totalPage) endBtn = totalPage;
-
-	    // [3] 실제 데이터 가져오기 (pcategory와 page를 사용하여 매물 가져오기)
-	    List<PropertyDto> result = EstateDao.getInstance().findByPno(mno, pcategory, startRow, display);
-
-	    // [4] PageDto 객체 생성
-	    PageDto pageDto = new PageDto();
-	    pageDto.setTotalPage(totalPage);  // 전체 페이지 수
-	    pageDto.setCurrentPage(page);  // 현재 페이지 번호
-	    pageDto.setStartbtn(startBtn);  // 페이지 버튼 시작 번호
-	    pageDto.setEndbtn(endBtn);  // 페이지 버튼 끝 번호
-	    pageDto.setProperties(result);  // 매물 목록
-
-	    // [5] PageDto 객체를 JSON 형식의 문자열로 변환
-	    ObjectMapper mapper = new ObjectMapper();
-	    String jsonResult = mapper.writeValueAsString(pageDto);  // PageDto 객체를 JSON으로 변환
-
-	    // [6] HTTP 응답으로 JSON 데이터 반환
-	    resp.setContentType("application/json");
-	    resp.getWriter().print(jsonResult);
+		// [3] 받은 전체 게시물을 JSON 형식의 문자열로 변환하기
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResult = mapper.writeValueAsString(pageDto); // PageDto를 JSON으로 변환
+		    
+		// [4] HTTP 응답 처리
+		resp.setContentType("application/json");
+		resp.getWriter().print(jsonResult); // 응답에 JSON 결과 출력
+		    
 	} // f end
 	
 	// 본인 매물 정보 수정

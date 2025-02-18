@@ -25,7 +25,7 @@
 	        	<!-- 수정할 주소 입력 필드 -->
 		       	<div class="mb-3">
 		          	<label for="exampleFormControlTextarea1" class="form-label"></label>
-		            <textarea class="form-control textarea evalue" id="exampleFormControlTextarea1" rows="7" placeholder="상세내용"></textarea>
+		            <textarea class="evalue form-control textarea" id="exampleFormControlTextarea1" rows="7" placeholder="상세내용"></textarea>
 		        </div>
 		        
 		        <!-- 수정할 매물 번호를 전달하기 위한 hidden input 추가 -->
@@ -70,14 +70,14 @@
 	
 	<!-- wrap  -->
 	<div id="estateview_wrap"> 
-		<div class="table-responsive estate_box">
-			<table class="table table-hover table-bordered table align-middle text-center estate_table">
+		<div class="estate_box table-responsive">
+			<table class="estate_table table table-hover table-bordered table align-middle text-center ">
 			  <thead class="table-light align-middle ">
 			    <tr>
 			      <th scope="col">매물번호</th>
 			      <th scope="col">
-				      	<select class="form-select w-100 estateview_select" aria-label="Default select example">
-				      	  <option value="10">카테고리</option>
+				      	<select class="estateview_select form-select w-100" aria-label="Default select example">
+				      	  <option value="10">전체</option>
 						  <option value="0">아파트</option>
 						  <option value="1">주택</option>
 						  <option value="2">오피스텔</option>
@@ -97,7 +97,6 @@
 			    </tr>
 			  </thead>
 			  <tbody class="table-group-divider">
-			  
 			    
 			  </tbody>
 			</table>

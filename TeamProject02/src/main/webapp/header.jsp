@@ -12,6 +12,30 @@
 <body>
 
 	<div id=header>
+	<!-- 모달 내용 -->
+	<!-- 판매권한신청 -->
+	<div class="modal fade" id="saleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">판매권한신청</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	      	<!-- 삭제할 매물 번호를 전달하기 위한 hidden input 추가 -->
+	      	<input type="hidden" class="delete-pno" name="pno">	
+	        판매권한을 신청하시겠습니까?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	        <button type="button" class="btn btn-primary" onclick="onSellUpdate()">신청</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- 판매권한신청 end -->
+	<!-- 모달 end -->
+	
 	<!-- 부트스트랩 nav -->
 		<nav class="navbar navbar-expand-lg header_nav">
 	  		<div class="container-fluid">
@@ -59,6 +83,7 @@
 			<div class="offcanvas-body">
 			  <div class="d-grid gap-2">
 				  <button class="btn btn-outline-dark" type="button">회원정보수정</button>
+				  <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
 				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
 				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estatewrite.jsp'">매물등록신청</button>
 				  <button class="btn btn-outline-dark Hlogout" type="button">로그아웃</button>				  
@@ -69,6 +94,7 @@
 
 <!-- 부트스트랩 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="/TeamProject02/js/estate/estate_sellupdate.js" type="text/javascript"></script>
 	
 </body>
 </html>

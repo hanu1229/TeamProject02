@@ -1,5 +1,3 @@
-console.log('estate_view!!');
-
 // 페이지네이션 버튼 클릭 시 데이터만 로드
 const getPageBtn = (response, pcategory) => {
     const page = parseInt(response.currentPage); // 현재 페이지
@@ -53,7 +51,8 @@ const getPageBtn = (response, pcategory) => {
 // 페이지 데이터 가져오기
 const findAll = (page = 1, pcategory) => {
     const mno = new URL(location.href).searchParams.get("mno"); // 현재 mno 값
-    const url = `/TeamProject02/estate/info?mno=${mno}&pcategory=${pcategory}&page=${page}`;
+    // pcategory가 10이면 모든 카테고리의 데이터를 요청
+    const url = `/TeamProject02/estate/info?mno=${mno}&pcategory=${pcategory === "10" ? "" : pcategory}&page=${page}`;
 
     fetch(url)
         .then((res) => res.json())  // 응답을 JSON 형태로 변환
@@ -73,6 +72,12 @@ const findAll = (page = 1, pcategory) => {
             document.querySelector(".estate_table tbody").innerHTML = "<tr><td colspan='12'>Error loading data</td></tr>";
         });
 };
+
+// 셀렉트 박스 변경 시 데이터 갱신
+document.querySelector(".estateview_select").addEventListener("change", (e) => {
+    const pcategory = e.target.value;
+    findAll(1, pcategory); // 페이지를 1로 리셋하고 새 카테고리 데이터 로드
+});
 
 
 // 테이블 내용 갱신
@@ -98,9 +103,9 @@ const updateTable = (properties) => {
                         <td>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-outline-dark eUpdate" data-bs-toggle="modal" data-bs-target="#updateModal" 
-									data-pno="${property.pno}" data-padd="${property.padd}">수정</button>
+                                    data-pno="${property.pno}" data-padd="${property.padd}">수정</button>
                                 <button type="button" class="btn btn-outline-dark eDelete" data-bs-toggle="modal" data-bs-target="#deleteModal"
-									data-pno="${property.pno}">삭제</button>
+                                    data-pno="${property.pno}">삭제</button>
                             </div>
                         </td>
                     </tr>`;
@@ -126,3 +131,5 @@ document.querySelector(".estateview_select").addEventListener("change", (e) => {
 
 // 페이지 로드 시 데이터 요청
 initialLoad();
+
+
