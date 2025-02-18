@@ -35,4 +35,31 @@ public class AdminSellRequestDao extends Dao {
 		return result;
 	}
 	
+	/** 신청한 매물 수락 또는 거절 */
+	public SellDto update(SellDto sellDto) {
+		SellDto result = new SellDto();
+		try {
+			String sql = "update sell_request set sstate = ? where sno = ?;";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, sellDto.getSstate());
+			ps.setInt(2, sellDto.getSno());
+			int count = ps.executeUpdate();
+			if(count == 1) { 
+				sql = "select s.*, m.mname from sell_request as s inner join member as m on m.mno = s.mno where sno = ? order by s.sno;";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, sellDto.getSno());
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					result.setSno(rs.getInt("sno")); result.setSfile(rs.getString("sfile"));
+					result.setSdate(rs.getString("sdate")); result.setSstate(rs.getInt("sstate"));
+					result.setSadd(rs.getString("sadd")); result.setMname(rs.getString("mname"));
+					result.setMno(rs.getInt("mno"));
+				}
+			}
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
+		return result;
+	}
+	
 }

@@ -31,4 +31,20 @@ public class AdminSellRequestController extends HttpServlet {
 		System.out.println(">> AdminSellRequest 신청한 매물 전체 조회(doGet) 종료\n");
 	}
 	
+	/** 신청한 매물 수락 또는 거절 */
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println(">> AdminSellRequest 신청한 매물 수락 또는 거절(doPut) 실행");
+		
+		ObjectMapper mapper = new ObjectMapper();
+		SellDto sellDto = mapper.readValue(req.getReader(), SellDto.class);
+		SellDto result = AdminSellRequestDao.getInstance().update(sellDto);
+		System.out.println(">> result : " + result);
+		String jsonResult = mapper.writeValueAsString(result);
+		resp.setContentType("application/json");
+		resp.getWriter().print(jsonResult);
+		
+		System.out.println(">> AdminSellRequest 신청한 매물 수락 또는 거절(doPut) 종료\n");
+	}
+	
 }

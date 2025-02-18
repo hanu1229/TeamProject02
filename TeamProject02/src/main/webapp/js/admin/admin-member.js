@@ -16,7 +16,7 @@ let printAll = () => {
 		data.forEach(obj => {
 			// 판매권한 숫자를 문자열 O, X, 관리자로 변경
 			let msellString = msellToString(obj.msell);
-			html = `
+			html += `
 			<tr id = "member-${obj.mno}">
 				<td>${obj.mno}</td>
 				<td>${obj.mid}</td>
@@ -35,10 +35,10 @@ let printAll = () => {
 			</tr>
 			`;
 			// 판매권한을 가진 사람은 다시 권한을 갖지 않도록 버튼을 비활성화
-			tbody.innerHTML += html;
+			//tbody.innerHTML += html;
 			count++;
 		});
-		//tbody.innerHTML = html;
+		tbody.innerHTML = html;
 		for(let index = 0; index < data.length; index++) {
 			let msell = document.querySelector(`#msell-state${data[index].mno}`);
 			let btn = document.querySelector(`#msell-btn${data[index].mno}`)
@@ -129,6 +129,7 @@ function requestDeleteMember(mno) {
 	.then(data => {
 		if(data == true) {
 			alert("정상적으로 탈퇴되었습니다.");
+			printAll();
 		} else {
 			alert("탈퇴에 실패했습니다.");
 		}

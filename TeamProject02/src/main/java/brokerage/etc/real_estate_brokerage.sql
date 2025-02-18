@@ -48,7 +48,7 @@ create table sell_request(
     # 회원번호
     mno int unsigned,
     constraint primary key(sno),
-    constraint foreign key(mno) references member(mno)
+    constraint foreign key(mno) references member(mno) on delete set null
 );
 
 # 매물신청 추가 --> sstate / 0 : 대기, 1 : 수락, 2 : 거절, 3 : 취소
@@ -93,7 +93,7 @@ insert into sell_request(sfile, sadd, mno, sstate) values
 ('sell_파일37.pdf', '호수전망 , 펜트리', 1, 1),
 ('sell_파일38.pdf', '에어컨 5대', 1, 1),
 ('sell_파일39.pdf', '올수리 경기장뷰', 1, 1),
-('sell_파일40.pdf', '채광 좋음', 1, 1);
+('sell_파일40.pdf', '채광 좋음', 1, 0);
 
 
 # 매물테이블
@@ -130,7 +130,7 @@ create table property(
     #회원번호
     mno int unsigned,
     constraint primary key(pno),
-    constraint foreign key(mno) references member(mno)
+    constraint foreign key(mno) references member(mno) on delete set null
 );
 
 # 매물 추가 --> pcategory / 0 : 아파트, 1 : 주택 , 2 오피스텔
@@ -226,7 +226,7 @@ create table brokerage(
     # 매물번호
     pno int unsigned,
     constraint primary key(bno),
-    constraint foreign key(mno) references member(mno),
+    constraint foreign key(mno) references member(mno) on delete set null,
     constraint foreign key(pno) references property(pno)
 );
 

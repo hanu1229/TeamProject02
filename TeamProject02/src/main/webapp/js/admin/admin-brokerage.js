@@ -54,7 +54,7 @@ function downloadFile(bfile) {
 		// <a> 태그의 링크를 임시 URL로 변경
         a.href = url;
 		// 다운로드 될 파일명 지정
-        a.download = `${bfile}.pdf`;
+        a.download = `${bfile}`;
 		// <a> 태그를 문서의 body에 추가 (클릭 이벤트를 실행하기 위함)
         document.body.appendChild(a);
 		// <a> 태그를 자동으로 클릭하여 다운로드 실행
