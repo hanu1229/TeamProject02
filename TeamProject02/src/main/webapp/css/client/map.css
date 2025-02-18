@@ -94,8 +94,8 @@ body {
 
 /* 매물 상세 정보 */
 .property-detail {
-    width: 400px;
-    background: white;
+    width: 100px;
+    background: blue;
     border-left: 1px solid #ddd;
     padding: 20px;
     overflow-y: auto;

@@ -1,12 +1,92 @@
+let map;
+let clusterer;
+let markers = [];
 
-var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-       center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표  //활용 : Geolocation API  = 접속된 유저의 좌표
-       level : 10 // 지도의 확대 레벨 
-   });
-   
-   // 마커 클러스터러를 생성합니다 (여러개 마커들을 하나의 도형)
-   var clusterer = new kakao.maps.MarkerClusterer({
-       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-       minLevel: 1 // 클러스터 할 최소 지도 레벨 
-   });
+// 지도 초기화
+function initMap() {
+    if (typeof kakao === 'undefined') {
+        console.error('Kakao maps API not loaded');
+        return;
+    }
+
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+        center: new kakao.maps.LatLng(37.4927689553243, 126.719082567274),
+        level: 8
+    };
+
+    // 지도 생성
+    map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 클러스터러 생성
+    clusterer = new kakao.maps.MarkerClusterer({
+        map: map,
+        averageCenter: true,
+        minLevel: 6,
+        disableClickZoom: true
+    });
+
+    // 마커 및 이벤트 등록
+    loadProperties();
+}
+
+// 부동산 매물 데이터 불러오기
+function loadProperties() {
+	
+	fetch( '/TeamProject02/client/view'  )
+		.then( response => response.json() )
+		.then( data => {
+			console.log( data );
+			addMarkers(data);
+			
+		})
+		.catch( e => { console.log(e) })
+
+}
+
+// 지도에 마커 추가
+function addMarkers(properties) {
+    markers = [];
+
+    properties.forEach(property => {
+        const position = new kakao.maps.LatLng(property.plat, property.plong);
+
+        const marker = new kakao.maps.Marker({
+            position: position,
+            title: property.paddress
+        });
+
+        // 마커 클릭 이벤트 추가
+        kakao.maps.event.addListener(marker, 'click', function () {
+            showPropertyDetail(property);
+        });
+
+        markers.push(marker);
+    });
+
+    // 클러스터러에 마커 추가
+    clusterer.addMarkers(markers);
+}
+
+// 부동산 상세 정보 표시
+function showPropertyDetail(property) {
+    const detailContainer = document.querySelector('.property-detail');
+    detailContainer.innerHTML = `
+        <h3>${property.paddress}</h3>
+        <p>${property.paddress}</p>
+        <p>가격: ${property.paddress}원</p>
+        <p>설명: ${property.paddress}</p>
+        <button onclick="closeDetail()">닫기</button>
+    `;
+    detailContainer.style.display = "block";
+}
+
+// 상세 정보 닫기
+function closeDetail() {
+    document.querySelector('.property-detail').style.display = "none";
+}
+
+// 페이지 로드 후 실행
+window.onload = function () {
+    initMap();
+};

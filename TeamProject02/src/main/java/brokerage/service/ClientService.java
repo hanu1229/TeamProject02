@@ -93,4 +93,7 @@ public class ClientService {
 		  return sellerInfo;  // 판매자 정보(이름, 연락처 등) 반환
 	}// c end
 	
+	public List<PropertyDto>getAllProperties(){
+		return clientDao.findAllProperties();
+	}
 }// class end

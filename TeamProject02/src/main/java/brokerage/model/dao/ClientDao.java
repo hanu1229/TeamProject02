@@ -183,5 +183,38 @@ public class ClientDao extends Dao {
         }
         return false;
     }
-	
+	//findAllProperties 메소드 추가
+    
+    public List<PropertyDto> findAllProperties() {
+        List<PropertyDto> list = new ArrayList<>();
+        String sql = "SELECT * FROM property";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                PropertyDto dto = new PropertyDto();
+                dto.setPno(rs.getInt("pno"));
+                dto.setPcategory(rs.getInt("pcategory"));
+                dto.setPaddress(rs.getString("paddress"));
+                dto.setPlat(rs.getDouble("plat"));
+                dto.setPlong(rs.getDouble("plong"));
+                dto.setPbuilding(rs.getInt("pbuilding"));
+                dto.setPstorey(rs.getInt("pstorey"));
+                dto.setParea(rs.getDouble("parea"));
+                dto.setPyear(rs.getString("pyear"));
+                dto.setPstructure(rs.getString("pstructure"));
+                dto.setPuser(rs.getString("puser"));
+                dto.setPadd(rs.getString("padd"));
+                dto.setPdate(rs.getString("pdate"));
+                dto.setPsell(rs.getInt("psell"));
+                dto.setMno(rs.getInt("mno"));
+                list.add(dto);
+            }
+        } catch(Exception e) {
+            System.out.println("findAllProperties 예외: " + e);
+        }
+        return list;
+    }
 }// class end
