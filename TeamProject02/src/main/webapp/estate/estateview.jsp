@@ -54,11 +54,13 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
+	      	<!-- 삭제할 매물 번호를 전달하기 위한 hidden input 추가 -->
+	      	<input type="hidden" class="delete-pno" name="pno">	
 	        정말 매물을 삭제 하시겠습니까?
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-primary">삭제</button>
+	        <button type="button" class="btn btn-primary" onclick="eDelete()">삭제</button>
 	      </div>
 	    </div>
 	  </div>
@@ -113,6 +115,7 @@
 	
 	<script src="/TeamProject02/js/estate/estate_view.js"></script>
 	<script src="/TeamProject02/js/estate/estate_update.js"></script>
+	<script src="/TeamProject02/js/estate/estate_delete.js"></script>
 	
 </body>
 </html>

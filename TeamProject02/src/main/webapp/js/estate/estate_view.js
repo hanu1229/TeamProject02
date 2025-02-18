@@ -126,27 +126,3 @@ document.querySelector(".estateview_select").addEventListener("change", (e) => {
 
 // 페이지 로드 시 데이터 요청
 initialLoad();
-
-/*
-// 매물 수정 메소드 (기존 데이터 출력)
-const eUpdate = ( ) => {
-	console.log("eUpdate");
-	// 입력 받은 자료 / 값 가져오기
-	const padd = document.querySelector('.evalue').value; // 수정할 내용
-	const pno = document.querySelector('.update-pno').value; // 수정할 pno
-	// 객체화
-	const obj = { pno : pno , padd : padd }
-	// fetch
-	const option = {
-		method : 'PUT' ,
-		headers : { 'ContentType' : 'application/json' },
-		body : JSON.stringify( obj )
-	}
-	fetch( `/TeamProject02/estate/info?pno=${pno}` , option )
-		.then( response => response.json() )
-		.then( data => {
-			if( data == true ){ alert( '수정 성공'); location.href = "estateview.jsp"; }
-			else{ alert('수정 실패'); }
-		}) // then end
-		.catch( error => { console.log( error); } )
-} // f end */
