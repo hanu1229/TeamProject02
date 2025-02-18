@@ -23,4 +23,6 @@ public class BrokerageDto {
 	private int mno;
 	// 매물번호 FK
 	private int pno;
+	// 회원명
+	private String mname;
 } // c end

@@ -21,12 +21,12 @@
 						</div>
 						<!-- 아이디 -->
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control midinput" id="mid-input" placeholder="계정아이디">
+							<input id="mid-input" class="form-control midinput" type="text" placeholder="계정아이디">
 							<label for="floatingInput">아이디</label>
 						</div>
 						<!-- 비밀번호 -->
 						<div class="form-floating mb-3">
-							<input type="password" class="form-control mpwdinput" id="mpwd-input" placeholder="계정비밀번호">
+							<input id="mpwd-input" class="form-control mpwdinput" type="password" placeholder="계정비밀번호">
 							<label for="floatingPassword">비밀번호</label>
 						</div>
 						<button class="w-100 btn btn-lg btn-primary" type="button" onclick = "onLogin()">로그인</button>
