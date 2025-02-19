@@ -1,0 +1,81 @@
+.wrap {
+	display : flex;
+}
+.content {
+	margin-top : 80px;
+	margin-left : 40px;
+	margin-right : 40px;
+	width : 100%;
+}
+
+/* admin-header.js start */
+/* 버튼 간격 조정 */
+.mb-3 {
+    margin-bottom: 15px; /* 원하는 간격으로 설정 */
+}
+.img-box {
+	margin : 0px auto;
+}
+.img-box > img {
+	width : 100%;
+}
+.logout-btn {
+	width : 100%;
+}
+#admin-member, #admin-brokerage, #admin-sell-request, #admin-property {
+	cursor : pointer;
+}
+/* admin-header.js end */
+
+/* admin-member.js start */
+
+.btn-enable {
+	
+}
+.btn-disable {
+	cursor : not-allowed;
+}
+
+/* admin-member.js end */
+
+/* admin-brokerage.js start */
+
+.ellipsis-text {
+	/*width : 220px;*/
+	overflow : hidden;
+	text-overflow : ellipsis;
+	white-space : nowrap;
+}
+
+/* admin-brokerage.js end */
+
+/* admin-sell-request.js start */
+
+/* 테이블 높이를 제한하고, tbody에만 스크롤 추가 */
+.table-scroll {
+    width: 100%;
+    border-collapse: collapse;
+}
+/*
+.table-scroll thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 2;
+}
+*/
+
+.table-scroll {
+    display: block;
+    overflow-y: auto;
+    /* 스크롤 높이 조정 */
+    max-height: 600px; 
+}
+
+.table-scroll tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* admin-sell-request.js end */
