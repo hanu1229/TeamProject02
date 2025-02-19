@@ -40,7 +40,7 @@
 		<nav class="navbar navbar-expand-lg header_nav">
 	  		<div class="container-fluid">
 	  			<div class="header_logo">
-		    		<a class="navbar-brand" href="/TeamProject02/index.jsp"> <!-- 로고 -->
+		    		<a class="navbar-brand" href="/TeamProject02/client/map.jsp"> <!-- 로고 -->
 		    			<img class="header_logo" src="/TeamProject02/img/logo.png">
 		    		</a>
 		    	</div>
@@ -62,13 +62,10 @@
 		   	 	<div class="collapse navbar-collapse menu" id="navbarSupportedContent">
 		     		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		        		<li class="nav-item">
-		          			<a class="nav-link py-0" href="#">지도</a>
+		         			<a class="nav-link py-0" href="/TeamProject02/member/memberLogin.jsp">로그인</a>
 		        		</li>
 		        		<li class="nav-item">
-		         			<a class="nav-link py-0" href="#">로그인</a>
-		        		</li>
-		        		<li class="nav-item">
-		          			<a class="nav-link py-0" href="#">회원가입</a>
+		          			<a class="nav-link py-0" href="/TeamProject02/member/memberSignUp.jsp">회원가입</a>
 		        		</li>
 		      		</ul>
 		   		</div>
