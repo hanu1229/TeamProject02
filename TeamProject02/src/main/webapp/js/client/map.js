@@ -49,7 +49,6 @@ function addMarkers(properties) {
     markers = [];
 
     properties.forEach(property => {
-		console.log("psell = " + property.psell);
 		if(property.psell == 0) {
 	        const position = new kakao.maps.LatLng(property.plat, property.plong);
 	
