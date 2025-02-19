@@ -4,109 +4,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-   <link href="/TeamProject02/css/estate/estate.css" rel="stylesheet">
+<title>회원 가입</title>
+	<link rel = "stylesheet" href = "/TeamProject02/css/member/member.css">
 </head>
 <body>
-   
-   <jsp:include page="/header.jsp" />
-   
-   <!-- 모달 내용 -->
-   <!-- 수정 -->
-   <div class="modal fade" id="updateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-     <div class="modal-dialog modal-dialog-centered estateview_bg1">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">수정</h1>
-           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-           <form class="p-2 p-md-3 border rounded-3">
-                <div class="mb-3">
-                   <label for="exampleFormControlTextarea1" class="form-label"></label>
-                  <textarea class="form-control textarea" id="exampleFormControlTextarea1" rows="7" placeholder="상세내용"></textarea>
-              </div>
-              <hr class="my-4">
-              <div class="text-center">
-                  <label for="formFileLg" class="form-label fw-bold">첨부파일 수정을 원하시면 관리자에게 문의</label>
-              </div>
-            </form>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-           <button type="button" class="btn btn-primary">수정</button>
-         </div>
-       </div>
-     </div>
-   </div>
-   <!-- 수정 end -->
-   <!-- 삭제 -->
-   <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-     <div class="modal-dialog modal-dialog-centered">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">삭제</h1>
-           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-           정말 매물을 삭제 하시겠습니까?
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-           <button type="button" class="btn btn-primary">삭제</button>
-         </div>
-       </div>
-     </div>
-   </div>
-   <!-- 삭제 end -->
-   <!-- 모달 내용 end -->
-   
-   <!-- wrap  -->
-   <div id="estateview_wrap"> 
-      <div class="table-responsive estate_box">
-         <table class="table table-hover table-bordered table align-middle text-center estate_table">
-           <thead class="table-light align-middle ">
-             <tr>
-               <th scope="col">매물번호</th>
-               <th scope="col">
-                     <select class="form-select w-100 estateview_select" aria-label="Default select example">
-                       <option value="10">카테고리</option>
-                    <option value="0">아파트</option>
-                    <option value="1">주택</option>
-                    <option value="2">오피스텔</option>
-                  </select>
-               </th>
-               <th scope="col">주소</th>
-               <th scope="col">동</th>
-               <th scope="col">층</th>
-               <th scope="col">면적</th>
-               <th scope="col">준공년도</th>
-               <th scope="col">구조</th>
-               <th scope="col">등기부상 소유권 대상</th>
-               <th scope="col">추가내용</th>
-               <th scope="col">등록일</th>
-               <th scope="col">판매상태</th>
-               <th scope="col">기능</th>
-             </tr>
-           </thead>
-           <tbody class="table-group-divider">
-           
-             
-           </tbody>
-         </table>
-      </div>
-      <div class="d-flex justify-content-center mt-3">
-         <!-- 부트스트랩 : 페이지네이션 -->
-         <nav aria-label="Page navigation example">
-            <ul class="pagination pagebtnbox"> <!-- pagebtnbox -->
-                 
-            </ul>
-         </nav>
-      </div>
-   </div> 
-   <!-- wrap end -->
-   
-   <script src="/TeamProject02/js/estate/estate_view.js"></script>
-   
+
+		<jsp:include page="/header.jsp" />
+		
+		<!-- 회원가입 폼 -->
+		<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+			<div class="row align-items-center g-lg-5 py-5">
+
+				<!-- 회원가입 입력 구역 -->
+				<div class="col-md-10 mx-auto col-lg-5">
+					<form id="msignupform" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+						<div class = "mb-5 img-box">						
+							<img src = "/TeamProject02/img/logo.png"/>
+						</div>
+						<!-- 아이디 -->
+						<div class="form-floating mb-3">
+							<input id="mid-input" class="form-control midinput" type="text" placeholder="계정아이디">
+							<label for="floatingInput">아이디</label>
+						</div>
+						<!-- 비밀번호 -->
+						<div class="form-floating mb-3">
+							<input id="mpwd-input" class="form-control mpwdinput" type="password" placeholder="계정비밀번호">
+							<label for="floatingPassword">비밀번호</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input id="mname-input" class="form-control mnameinput" type="text" placeholder="사용자 이름">
+							<label for="floatingInput2">이름</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input id="mphone-input" class="form-control mphoneinput" type="text" placeholder="사용자 전화번호">
+							<label for="floatingInput3">전화번호</label>
+						</div>
+						<!-- 회원가입 버튼 -->
+						<button class="w-100 btn btn-lg btn-primary mb-3" type="button" onclick ="memberSignUp()">가입</button>
+						<!-- 로그인페이지 이동 -->
+						<button class="w-100 btn btn-lg btn-primary" type="button" onclick="window.location.href='/TeamProject02/member/memberLogin.jsp'">로그인</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+	<!-- js -->
+	<script src = "/TeamProject02/js/member/member-signup.js"></script>
+	
 </body>
 </html>
