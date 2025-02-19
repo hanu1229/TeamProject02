@@ -17,26 +17,26 @@
 
 				<!-- 회원가입 입력 구역 -->
 				<div class="col-md-10 mx-auto col-lg-5">
-					<form id="msignupform" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+					<form id="signupform" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
 						<div class = "mb-5 img-box">						
 							<img src = "/TeamProject02/img/logo.png"/>
 						</div>
 						<!-- 아이디 -->
 						<div class="form-floating mb-3">
-							<input id="mid-input" class="form-control midinput" type="text" placeholder="계정아이디" value = "test1">
+							<input id="mid-input" name="mid" class="form-control midinput" type="text" placeholder="계정아이디">
 							<label for="floatingInput">아이디</label>
 						</div>
 						<!-- 비밀번호 -->
 						<div class="form-floating mb-3">
-							<input id="mpwd-input" class="form-control mpwdinput" type="password" placeholder="계정비밀번호" value = "1234">
+							<input id="mpwd-input" name="mpwd" class="form-control mpwdinput" type="password" placeholder="계정비밀번호">
 							<label for="floatingPassword">비밀번호</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input id="mname-input" class="form-control mnameinput" type="text" placeholder="사용자 이름" value = "한웅재">
+							<input id="mname-input" name="mname" class="form-control mnameinput" type="text" placeholder="사용자 이름">
 							<label for="floatingInput2">이름</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input id="mphone-input" class="form-control mphoneinput" type="text" placeholder="사용자 전화번호" value = "01076767676">
+							<input id="mphone-input" name="mphone" class="form-control mphoneinput" type="text" placeholder="사용자 전화번호">
 							<label for="floatingInput3">전화번호(하이픈 금지)</label>
 						</div>
 						<!-- 회원가입 버튼 -->

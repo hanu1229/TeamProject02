@@ -18,13 +18,13 @@ const memberSignUp = ( ) => {
 		method : 'POST' ,
 		headers : {"Conetent-Type" : "aplication/json"},
 		body : JSON.stringify(obj)
-	}
+	} 
 	 
 	// fetch
 	fetch(`/TeamProject02/afiliado/signup` , option )
 		.then( response => response.json() )
 		.then( data => {
-			if( data == true ){ alert('회원가입 성공'); location.reload(); }
+			if( data == true ){ alert('회원가입 성공'); location.href = "memberLogin.jsp"; }
 			else{ alert('회원가입 실패'); }
 		}) // thed end
 		.catch( error => { console.log( error ); } )

@@ -86,36 +86,37 @@ public class MemberDao extends Dao{
 	
 	// 회원정보 찾기 메소드
 	// 회원 이름과 전화번호를 이용해 회원 ID와 비밀번호 찾기
-	public MemberDto findMember(MemberDto memberDto) {
-	    try {
-	        // SQL 작성
-	        String sql = "select mno, mid, mpwd from member where mname = ? and mphone = ?";
-
-	        // PreparedStatement 생성
-	        PreparedStatement ps = conn.prepareStatement(sql);
-	        ps.setString(1, memberDto.getMname());  // DTO에서 회원 이름 가져오기
-	        ps.setString(2, memberDto.getMphone()); // DTO에서 전화번호 가져오기
-
-	        // SQL 실행 후 결과 조회
-	        ResultSet rs = ps.executeQuery();
-
-	        // 결과가 존재하면 DTO 객체로 반환
-	        if (rs.next()) {
-	            return new MemberDto(
-	                rs.getInt("mno"),     // 회원번호
-	                rs.getString("mid"),  // 회원 아이디
-	                rs.getString("mpwd"), // 회원 비밀번호
-	                null,                 // mname (조회 필요 없음)
-	                null,                 // mphone (조회 필요 없음)
-	                null,                 // mdate (조회 필요 없음)
-	                0                     // msell (조회 필요 없음)
-	            );
-	        }
-	    } catch (SQLException e) {
-	        System.out.println("SQL 실행 오류: " + e);
-	    }
-	    return null; // 회원 정보를 찾지 못한 경우 null 반환
-	}
+//	public MemberDto findMember(MemberDto memberDto) {
+//	    try {
+//	        // SQL 작성
+//	        String sql = "select mno, mid, mpwd from member where mname = ? and mphone = ?";
+//
+//	        // PreparedStatement 생성
+//	        PreparedStatement ps = conn.prepareStatement(sql);
+//	        ps.setString(1, memberDto.getMname());  // DTO에서 회원 이름 가져오기
+//	        ps.setString(2, memberDto.getMphone()); // DTO에서 전화번호 가져오기
+//
+//	        // SQL 실행 후 결과 조회
+//	        ResultSet rs = ps.executeQuery();
+//
+//	        // 결과가 존재하면 DTO 객체로 반환
+//	        if (rs.next()) {
+//	            return new MemberDto(
+//	                rs.getInt("mno"),     // 회원번호
+//	                rs.getString("mid"),  // 회원 아이디
+//	                rs.getString("mpwd"), // 회원 비밀번호
+//	                null,                 // mname (조회 필요 없음)
+//	                null,                 // mphone (조회 필요 없음)
+//	                null,                 // mdate (조회 필요 없음)
+//	                0                     // msell (조회 필요 없음)
+//	            );
+//	        }
+//	    } catch (SQLException e) {
+//	        System.out.println("SQL 실행 오류: " + e);
+//	    }
+//	    return null; // 회원 정보를 찾지 못한 경우 null 반환
+//	}
+	
 
 
 } // c end
