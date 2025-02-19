@@ -15,7 +15,7 @@
 
 				<!-- 오른쪽 회원가입 입력 구역 -->
 				<div class="col-md-10 mx-auto col-lg-5">
-					<form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+					<form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" id="signupform">
 						<div class = "mb-5 img-box">						
 							<img src = "/TeamProject02/img/logo.png"/>
 						</div>
@@ -30,7 +30,7 @@
 							<label for="floatingPassword">비밀번호</label>
 						</div>
 						<!-- 로그인 버튼 -->
-						<button class="w-100 btn btn-lg btn-primary mb-3" type="button" onclick = "memberLogin()">로그인</button>
+						<button class="w-100 btn btn-lg btn-primary mb-3"  id = "loginput" type="button" onclick = "memberLogin()">로그인</button>
 						<!-- 회원 정보 찾기 -->
 						<button class="w-100 btn btn-lg btn-primary" type="button" onclick="memberFind()">아이디/비밀번호 찾기</button>
 					</form>
