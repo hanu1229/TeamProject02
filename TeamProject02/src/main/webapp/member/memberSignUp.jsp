@@ -23,21 +23,21 @@
 						</div>
 						<!-- 아이디 -->
 						<div class="form-floating mb-3">
-							<input id="mid-input" class="form-control midinput" type="text" placeholder="계정아이디">
+							<input id="mid-input" class="form-control midinput" type="text" placeholder="계정아이디" value = "test1">
 							<label for="floatingInput">아이디</label>
 						</div>
 						<!-- 비밀번호 -->
 						<div class="form-floating mb-3">
-							<input id="mpwd-input" class="form-control mpwdinput" type="password" placeholder="계정비밀번호">
+							<input id="mpwd-input" class="form-control mpwdinput" type="password" placeholder="계정비밀번호" value = "1234">
 							<label for="floatingPassword">비밀번호</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input id="mname-input" class="form-control mnameinput" type="text" placeholder="사용자 이름">
+							<input id="mname-input" class="form-control mnameinput" type="text" placeholder="사용자 이름" value = "한웅재">
 							<label for="floatingInput2">이름</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input id="mphone-input" class="form-control mphoneinput" type="text" placeholder="사용자 전화번호">
-							<label for="floatingInput3">전화번호</label>
+							<input id="mphone-input" class="form-control mphoneinput" type="text" placeholder="사용자 전화번호" value = "01076767676">
+							<label for="floatingInput3">전화번호(하이픈 금지)</label>
 						</div>
 						<!-- 회원가입 버튼 -->
 						<button class="w-100 btn btn-lg btn-primary mb-3" type="button" onclick ="memberSignUp()">가입</button>

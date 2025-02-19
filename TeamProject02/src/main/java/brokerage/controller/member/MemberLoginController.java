@@ -39,6 +39,7 @@ public class MemberLoginController extends HttpServlet{
 				HttpSession session = req.getSession(); // 세션에 속성 추가 ( 톰켓 서버의 저장소 / 메모리 )
 				session.setAttribute("loginMno", loginMno); // 세션에 속성 추가 : 톰켓 서버에 데이터 저장
 				session.setMaxInactiveInterval(60*60); // 60분 제한
+				System.out.println("loginMno = " + session.getAttribute("loginMno"));
 			//HTTP 응답
 				resp.setContentType("application/json");
 				resp.getWriter().print(loginMno); // 로그인 성공 JSON 데이터 전송

@@ -4,15 +4,20 @@ console.log('member-signup.js!!');
 const memberSignUp = ( ) => {
 	
 	//	1. form 을 한번에 가져오기
-	const msignupform = document.querySelector('#signupform'); // form 전체 가져오기
+	//const msignupform = document.querySelector('#msignupform'); // form 전체 가져오기
 	// console.log( msiupform );
-	
+	const mid = document.querySelector('#mid-input');
+	const mpwd = document.querySelector('#mpwd-input');
+	const mname = document.querySelector('#mname-input');
+	const mphone = document.querySelector('#mphone-input');
+	let obj = {mid: mid.value, mpwd : mpwd.value, mname : mname.value, mphone : mphone.value};
 	// FormData
-	const msignupformData = new FormData( msignupform );
+	//const msignupformData = new FormData( msignupform );
 	// option
 	const option = {
 		method : 'POST' ,
-		body : msignupformData
+		headers : {"Conetent-Type" : "aplication/json"},
+		body : JSON.stringify(obj)
 	}
 	 
 	// fetch

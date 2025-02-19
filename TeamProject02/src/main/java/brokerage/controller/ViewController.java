@@ -18,6 +18,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/client/view")
 public class ViewController extends HttpServlet { //진석작성
@@ -40,6 +41,9 @@ public class ViewController extends HttpServlet { //진석작성
 			BrokerageDto brokerageDto = obj.readValue(req.getReader(),BrokerageDto.class);
 			brokerageDto.setBfile("brokerage_파일.pdf");
 			brokerageDto.setBmanager("김철수");
+			HttpSession session = req.getSession();
+			int mno = (Integer)session.getAttribute("loginMno");
+			brokerageDto.setMno(mno);
 			boolean result = ClientDao.getInstance().buy(brokerageDto);
 			resp.setContentType("application/json");
 			resp.getWriter().print(result);

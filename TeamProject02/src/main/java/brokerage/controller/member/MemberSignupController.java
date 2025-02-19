@@ -37,6 +37,7 @@ public class MemberSignupController extends HttpServlet{
         // 3. 회원가입 로직 실행 (DB에 회원 정보 저장)
 		int signupResult = MemberDao.getInstance().signup(memberDto);
 		boolean result = (signupResult > 0); // 회원가입 성공 여부를 boolean으로 변환 // 0보다 크면 성공 (회원번호가 생성됨)
+		System.out.println("회원가입 완료");
 		
 		  // 4. JSON 형식으로 회원가입 결과 응답
 		resp.setContentType("application/json");
@@ -50,7 +51,6 @@ public class MemberSignupController extends HttpServlet{
      */
     private String validation(MemberDto memberDto) {
         if (memberDto == null) return "회원 정보가 없습니다."; // 요청 데이터가 없는 경우
-
         // 아이디 유효성 검사 (영문 + 숫자 조합, 5~30자)
         if (memberDto.getMid() == null || !memberDto.getMid().matches("^[a-zA-Z0-9]{5,30}$")) {
             return "아이디는 영문자와 숫자로 이루어진 5~30자의 문자열이어야 합니다!";
@@ -60,7 +60,6 @@ public class MemberSignupController extends HttpServlet{
 //        if (memberDto.getMpwd() == null || !memberDto.getMpwd().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
 //            return "비밀번호는 최소 8자이며, 대소문자, 숫자, 특수문자를 포함해야 합니다!";
 //        }
-
         // 이름 유효성 검사 (한글 또는 영문, 2~15자)
         if (memberDto.getMname() == null || !memberDto.getMname().matches("^[가-힣a-zA-Z]{2,15}$")) {
             return "이름은 한글 또는 영문으로 2~15자여야 합니다!";
@@ -70,12 +69,11 @@ public class MemberSignupController extends HttpServlet{
 //        if (memberDto.getMphone() == null || !memberDto.getMphone().matches("^\\d{3}-\\d{3,4}-\\d{4}$")) {
 //            return "전화번호 형식이 올바르지 않습니다! 예: 010-1234-5678";
 //        }
-        
         // 전화번호 유효성 검사 (하이픈 없이 숫자 13자리만 허용)
         if (memberDto.getMphone() == null || !memberDto.getMphone().matches("^\\d{11}$")) {
             return "전화번호는 ( - ) 제외 숫자 11자리여야 합니다. EX) 0101234567890";
         }
-
+        
         return null; // 모든 검사를 통과하면 null 반환 (오류 없음)
     }
 
