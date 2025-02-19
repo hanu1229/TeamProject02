@@ -33,7 +33,7 @@
 		            <input class="form-control form-control-lg" id="formFileLg" name="sfile" type="file">
 		          </div>
 		          <hr class="my-4">
-		          <button onclick="estate_Write()" class="w-100 btn btn-lg btn-outline-dark" type="button">신청하기</button>
+		          <button onclick="estate_Write()" class="w-100 btn btn-lg btn-primary" type="button">신청하기</button>
 		        </form>
 		      </div>
 		  </div>

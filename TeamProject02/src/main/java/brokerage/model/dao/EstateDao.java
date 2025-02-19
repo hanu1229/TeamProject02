@@ -63,6 +63,7 @@ public class EstateDao extends Dao{
 	    return 0;
 	}
 	
+	// 매물 전체 개수 조회
 	public ArrayList<PropertyDto> findAll(int mno, int pcategory, int startRow, int display) {
 	    ArrayList<PropertyDto> list = new ArrayList<>();
 	    try {
@@ -116,7 +117,7 @@ public class EstateDao extends Dao{
 	        System.out.println("findAll SQL Error: " + e);
 	    }
 	    return list;
-	}
+	} // f end
 
 	// 본인 매물 수정
 	public boolean estateUpdate(PropertyDto propertyDto) {
@@ -131,16 +132,28 @@ public class EstateDao extends Dao{
 	    return false;
 	} // f end
 	
-	// 본인 매물 삭제
-	public boolean estateDelete( int pno ) {
+//	// 본인 매물 삭제
+//	public boolean estateDelete( int pno ) {
+//		try {
+//			String sql = "delete from property where pno = ?";
+//			PreparedStatement ps = conn.prepareStatement(sql);
+//			ps.setInt(1, pno);
+// 			int count = ps.executeUpdate();
+// 			if( count == 1 ) { return true; }
+//		}catch( SQLException e ) { System.out.println( e ); }
+//		return false;
+//	} // f end
+	
+	// 본인 매물 판매 중지 
+	public boolean estateStop( PropertyDto propertyDto ) {
 		try {
-			String sql = "delete from property where pno = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, pno);
- 			int count = ps.executeUpdate();
- 			if( count == 1 ) { return true; }
-		}catch( SQLException e ) { System.out.println( e ); }
-		return false;
+	        String sql = "update property set psell = 2 where pno = ?";
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	        ps.setInt(1, propertyDto.getPno());  // 수정할 매물 번호
+	        int count = ps.executeUpdate();
+	        if ( count == 1) { return true; }
+	    } catch (SQLException e) { System.out.println( e ); }
+	    return false;
 	} // f end
 	
 	// 판매권한 신청 ( 1 -> 3 )

@@ -45,27 +45,27 @@
 	  </div>
 	</div>
 	<!-- 수정 end -->
-	<!-- 삭제 -->
+	<!-- 중지 -->
 	<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">삭제</h1>
+	        <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">판매중지</h1>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	      	<!-- 삭제할 매물 번호를 전달하기 위한 hidden input 추가 -->
+	      	<!-- 판매중지할 매물 번호를 전달하기 위한 hidden input 추가 -->
 	      	<input type="hidden" class="delete-pno" name="pno">	
-	        정말 매물을 삭제 하시겠습니까?
+	        정말 매물판매를 중지하시겠습니까? (번복불가)
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-primary" onclick="eDelete()">삭제</button>
+	        <button type="button" class="btn btn-primary" onclick="eStop()">중지</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
-	<!-- 삭제 end -->
+	<!-- 중지 end -->
 	<!-- 모달 내용 end -->
 	
 	<!-- wrap  -->
@@ -114,7 +114,7 @@
 	
 	<script src="/TeamProject02/js/estate/estate_view.js"></script>
 	<script src="/TeamProject02/js/estate/estate_update.js"></script>
-	<script src="/TeamProject02/js/estate/estate_delete.js"></script>
+	<script src="/TeamProject02/js/estate/estate_stop.js"></script>
 	
 </body>
 </html>

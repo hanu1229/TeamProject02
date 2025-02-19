@@ -167,15 +167,15 @@ public class EstateController extends HttpServlet{
 	    resp.getWriter().print(result);
 	} // f end
 	
-	// 본인 매물 삭제
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("EstateController dodelete!!");
-		int pno = Integer.parseInt( req.getParameter("pno") );
-		System.out.println("pno" + pno );
-		boolean result = EstateDao.getInstance().estateDelete( pno );
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
-	} // f end
+//	// 본인 매물 삭제
+//	@Override
+//	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		System.out.println("EstateController dodelete!!");
+//		int pno = Integer.parseInt( req.getParameter("pno") );
+//		System.out.println("pno" + pno );
+//		boolean result = EstateDao.getInstance().estateDelete( pno );
+//		resp.setContentType("application/json");
+//		resp.getWriter().print(result);
+//	} // f end
 	
 } // c end

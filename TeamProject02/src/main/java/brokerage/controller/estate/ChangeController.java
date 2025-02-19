@@ -36,5 +36,6 @@ public class ChangeController extends HttpServlet{
 		// 응답
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
-	}
+	} // f end
+	
 } // c end

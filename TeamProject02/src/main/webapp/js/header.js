@@ -40,18 +40,18 @@ const mgetLoginInfo = ( ) => {
 				// 로그인한 회원의 판매권한 값이 1이거나 관리자(9)면 매물등록신청 버튼 유
 				if( msellState === 1 || msellState === 9 ) {
 					msellboxHtml += `<div class="d-grid gap-2">
-								<button class="btn btn-outline-dark" type="button">회원정보수정</button>
-								<button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
-								<button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
-								<button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estatewrite.jsp'">매물등록신청</button>
-								<button class="btn btn-outline-dark Hlogout" type="button" onclick="logout()">로그아웃</button>				  
+								<button class="btn btn-primary" type="button">회원정보수정</button>
+								<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
+								<button class="btn btn-primary" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
+								<button class="btn btn-primary" type="button" onclick="window.location.href='/TeamProject02/estate/estatewrite.jsp'">매물등록신청</button>
+								<button class="btn btn-primary Hlogout" type="button" onclick="logout()">로그아웃</button>				  
 							</div>`
 				}else{ // 권한 값이 1이 아니면 매물등록 신청 버튼 무
 					msellboxHtml += `<div class="d-grid gap-2">
-								<button class="btn btn-outline-dark" type="button">회원정보수정</button>
-								<button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
-								<button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
-								<button class="btn btn-outline-dark Hlogout" type="button" onclick="logout()">로그아웃</button>				  
+								<button class="btn btn-primary" type="button">회원정보수정</button>
+								<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
+								<button class="btn btn-primary" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
+								<button class="btn btn-primary Hlogout" type="button" onclick="logout()">로그아웃</button>				  
 							</div>`
 				}
 				

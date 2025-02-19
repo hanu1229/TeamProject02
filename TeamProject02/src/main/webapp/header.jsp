@@ -74,7 +74,7 @@
 		
 		<!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">나중에 마이페이지 버튼에 적용</button> -->
 
-		<div class="offcanvas offcanvas-end " data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+		<div class="offcanvas offcanvas-end bg-body-secondary" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
 			<div class="offcanvas-header ">
 			  <h5 id="offcanvasRightLabel" class="fw-bold mx-auto">마이페이지</h5>
 			</div>

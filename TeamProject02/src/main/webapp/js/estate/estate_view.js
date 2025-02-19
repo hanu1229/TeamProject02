@@ -85,11 +85,24 @@ const updateTable = (properties) => {
     const estateTable = document.querySelector(".estate_table tbody");
     let html = '';
 
+    // pcategory와 psell 변환용 매핑 객체
+    const categoryMap = {
+        0: "아파트",
+        1: "주택",
+        2: "오피스텔",
+    };
+
+    const sellStatusMap = {
+        0: "판매중",
+        1: "판매완료",
+        2: "판매중지",
+    };
+
     if (Array.isArray(properties) && properties.length > 0) {
         properties.forEach((property) => {
             html += `<tr>
                         <td>${property.pno}</td>
-                        <td>${property.pcategory}</td>
+                        <td>${categoryMap[property.pcategory] || "기타"}</td>
                         <td>${property.paddress}</td>
                         <td>${property.pbuilding}</td>
                         <td>${property.pstorey}</td>
@@ -99,13 +112,13 @@ const updateTable = (properties) => {
                         <td>${property.puser}</td>
                         <td>${property.padd}</td>
                         <td>${property.pdate}</td>
-                        <td>${property.psell}</td>
+                        <td>${sellStatusMap[property.psell] || "알수없음"}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-outline-dark eUpdate" data-bs-toggle="modal" data-bs-target="#updateModal" 
+                                <button type="button" class="eUpdate btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" 
                                     data-pno="${property.pno}" data-padd="${property.padd}">수정</button>
-                                <button type="button" class="btn btn-outline-dark eDelete" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                    data-pno="${property.pno}">삭제</button>
+                                <button type="button" class="eStop btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                    data-pno="${property.pno}">중지</button>
                             </div>
                         </td>
                     </tr>`;
