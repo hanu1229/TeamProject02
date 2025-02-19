@@ -20,7 +20,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/client/view")
 public class ViewController extends HttpServlet { //진석작성
@@ -41,10 +40,8 @@ public class ViewController extends HttpServlet { //진석작성
 			//해당 매물 이미지들만 조회할수있게
 			List<String> imges = ClientDao.getInstance().findImg();
 			for(int i =0; i<=imges.size()-1;i++) {
-				//String str = req.getServletContext().getRealPath("/img/")+imges.get(i);
-				String str = "/TeamProject02/img/" + imges.get(i);
+				String str = req.getServletContext().getRealPath("/img/")+imges.get(i);
 				result.get(i).setPhoto(str);
-				//System.out.println(result.get(i).getPhoto());
 			}
 			jsonResult = mapper.writeValueAsString(result);
 		}
@@ -59,9 +56,6 @@ public class ViewController extends HttpServlet { //진석작성
 			BrokerageDto brokerageDto = obj.readValue(req.getReader(),BrokerageDto.class);
 			brokerageDto.setBfile("brokerage_파일.pdf");
 			brokerageDto.setBmanager("김철수");
-			HttpSession session = req.getSession();
-			int mno = (Integer)session.getAttribute("loginMno");
-			brokerageDto.setMno(mno);
 			boolean result = ClientDao.getInstance().buy(brokerageDto);
 			resp.setContentType("application/json");
 			resp.getWriter().print(result);
