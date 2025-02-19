@@ -22,7 +22,7 @@ let printAll = () => {
 				<td class = "ellipsis-text" style ="width : 20%;">${obj.sadd}</td>
 				<td style ="width : 10%;">${obj.mname} / ${obj.mno}</td>
 				<td style ="width : 20%;">
-					<button id = "accept-btn${obj.sno}" class = "btn btn-primary" type = "button" onclick = "">수락</button>
+					<button id = "accept-btn${obj.sno}" class = "btn btn-primary" type = "button" onclick = "acceptSell('${obj.mname}', ${obj.mno})">수락</button>
 					<button id = "refuse-btn${obj.sno}" class = "btn btn-primary" type = "button" onclick = "refuseSell(${obj.sno}, 2)">거절</button>
 				</td>
 			</tr>
@@ -101,8 +101,94 @@ function refuseSell(sno, newState) {
 }
 
 /** 신청 매물 목록 수락 버튼 클릭 시 */
-function acceptSell() {
-	let SellModalTable = document.querySelector(`#sell-modal-table > tbody`);
+function acceptSell(mname, mno) {
+	let modalBtn = document.querySelector("#modal-btn");
+	modalBtn.click();
+	let SellModalTable = document.querySelector(`#sell-modal`);
+	SellModalTable.innerHTML = `
+	<div class="modal-header">
+		<h1 class="modal-title fs-5" id="staticBackdropLabel">매물 등록</h1>
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	</div>
+	<div class="modal-body">
+		<table id = "sell-modal-table" style = "width : 100%;">
+			<tbody>
+					<tr>
+						<th class="py-3">카테고리</th>
+						<td><input class= "form-control" placeholder = "0 : 아파트, 1 : 주택, 2 : 오피스텔" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">주소</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">위도</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">경도</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">동</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">층수</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">가격</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">면적</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">준공년도 (20XX.XX)</th>
+						<td><input class= "form-control" placeholder = "연도.월" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">구조</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">소유권 대상</th>
+						<td><input class= "form-control" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">회원이름 / 번호</th>
+						<td><input class= "form-control" readonly value = "${mname} / ${mno}" type = "text"/></td>
+					</tr>
+					<tr>
+						<th class="py-3">추가내용</th>
+						<td><textarea class="form-control" rows="6"></textarea></td>
+					</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+		<button id = "model-submit" type="button" class="btn btn-primary" onclick = "submitProperty()">등록</button>
+	</div>
+	`;
+}
+
+/** 매물 등록 정보 전송 */
+function submitProperty() {
+	let inputType = document.querySelectorAll(`#sell-modal-table > tbody > tr > td > input`);
+	let textareaType = document.querySelectorAll(`#sell-modal-table > tbody > tr > td > textarea`);
+	alert(ttemp(inputType, textareaType));
+}
+
+function ttemp(inputType, textareaType) {
+	let str = ``;
+	for(let index = 0; index < inputType.length; index++) {
+		str += inputType[index].value + "\n";
+	}
+	str += textareaType.Value +"\n";
+	return str;
 }
 
 

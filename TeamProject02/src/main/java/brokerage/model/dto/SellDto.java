@@ -23,4 +23,5 @@ public class SellDto {
 	private int mno;
 	// 회원이름
 	private String mname;
+	
 } // c end
