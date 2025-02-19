@@ -92,7 +92,7 @@ function showPropertyDetail1(property) {
 	
     detailContainer.innerHTML = `
         <h3>${property.paddress}</h3>
-		<img src="${property.photo}" style = "width: 300px; height : 150px;"/> 
+		<img src="${property.photo}" style = "width: 300px; object-fit:cover;"/> 
         <p>${categoryName}</p>
         <p>가격: ${property.mprice*10000}원</p>
         <p>동:${property.pbuilding}</p>		
