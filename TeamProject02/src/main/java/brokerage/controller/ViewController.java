@@ -41,7 +41,7 @@ public class ViewController extends HttpServlet { //진석작성
 			List<String> imges = ClientDao.getInstance().findImg();
 			for(int i =0; i<=imges.size()-1;i++) {
 				String str = req.getServletContext().getRealPath("/img/")+imges.get(i);
-				result.get(i).setPhoto(str);
+				result.get(i).setPhoto(str); 
 			}
 			jsonResult = mapper.writeValueAsString(result);
 		}
