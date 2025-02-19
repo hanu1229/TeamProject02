@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import brokerage.model.dto.BrokerageDto;
 import brokerage.model.dto.PropertyDto;
 
 public class ClientDao extends Dao {
@@ -217,5 +218,27 @@ public class ClientDao extends Dao {
             System.out.println("findAllProperties 예외: " + e);
         }
         return list;
+    }
+    
+    public boolean buy(BrokerageDto brokerageDto) {
+    	try {
+    		String sql = "INSERT INTO brokerage(bfile, bmanager, bcomment, mno, pno) VALUES(?, ?, ?, ? ,?)";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    		ps.setString(1, brokerageDto.getBfile());
+    		ps.setString(2, brokerageDto.getBmanager());
+    		ps.setString(3, brokerageDto.getBcomment());
+    		ps.setInt(4, brokerageDto.getMno());
+    		ps.setInt(5, brokerageDto.getPno());
+    		int count = ps.executeUpdate();
+    		if(count==1) {
+    			return true;
+    		}
+    		
+    	}catch (Exception e) {
+			System.out.println(e);
+			
+    	}
+    	return false;
+    	
     }
 }// class end

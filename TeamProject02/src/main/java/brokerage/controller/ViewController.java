@@ -10,7 +10,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import brokerage.model.dao.ClientDao;
-
+import brokerage.model.dto.BrokerageDto;
 import brokerage.model.dto.PropertyDto;
 
 import jakarta.servlet.ServletException;
@@ -34,6 +34,17 @@ public class ViewController extends HttpServlet { //진석작성
 		
 	}
 	
+	@Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			ObjectMapper obj = new ObjectMapper();
+			BrokerageDto brokerageDto = obj.readValue(req.getReader(),BrokerageDto.class);
+			brokerageDto.setBfile("brokerage_파일.pdf");
+			brokerageDto.setBmanager("김철수");
+			boolean result = ClientDao.getInstance().buy(brokerageDto);
+			resp.setContentType("application/json");
+			resp.getWriter().print(result);
+			
+		}
 	
 }// class end
 
