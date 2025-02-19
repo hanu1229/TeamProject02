@@ -16,7 +16,7 @@ let printAll = () => {
 	.then(data => {
 		data.forEach(obj => {
 			let pcategory = changeToCategory(obj.pcategory);
-			let psell = changeToSell(obj.psell);
+			let psell = changeToSell(obj.psell);;
 			html += `
 			<tr class = "text-center">
 				<td style ="width : 10%;">${obj.pno}</td>
