@@ -11,11 +11,12 @@
 </head>
 <body>
     <div class="map-container">
+    <div class="property-detail"></div>
         <div id="map"></div>
         <div class="sidebar">
             <div class="property-list"></div>
         </div>
-        <div class="property-detail"></div>
+        
     </div>
 
 

@@ -33,7 +33,7 @@
 							<label for="floatingPassword">비밀번호</label>
 						</div>
 						<!-- 로그인 버튼 -->
-						<button class="w-100 btn btn-lg btn-primary mb-3" type="button" onclick = "memberLogin()">로그인</button>
+						<button class="w-100 btn btn-lg btn-primary mb-3"  id = "loginput" type="button" onclick = "memberLogin()">로그인</button>
 						<!-- 회원가입 페이지 이동 -->
 						<button class="w-100 btn btn-lg btn-primary" type="button" onclick="window.location.href='/TeamProject02/member/memberSignUp.jsp'">회원가입</button>
 					</form>
@@ -41,7 +41,8 @@
 			</div>
 		</div>
 		
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src = "/TeamProject02/js/member/member-login.js"></script>
-	
+		<script src = "/TeamProject02/js/member/member-header.js"></script>
 	</body>
 </html>

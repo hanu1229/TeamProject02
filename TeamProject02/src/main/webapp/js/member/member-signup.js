@@ -18,7 +18,7 @@ const memberSignUp = ( ) => {
 		headers : { 'Content-Type' : 'application/json' },
 		body : JSON.stringify( obj )
 	}
-	
+	 
 	// fetch
 	fetch(`/TeamProject02/afiliado/signup` , option )
 		.then( response => response.json() )
