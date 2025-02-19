@@ -42,6 +42,7 @@ public class ViewController extends HttpServlet { //진석작성
 			List<String> imges = ClientDao.getInstance().findImg();
 			for(int i =0; i<=imges.size()-1;i++) {
 				//String str = req.getServletContext().getRealPath("/img/")+imges.get(i);
+				// 이부분이 수정
 				String str = "/TeamProject02/img/" + imges.get(i);
 				result.get(i).setPhoto(str);
 				//System.out.println(result.get(i).getPhoto());
