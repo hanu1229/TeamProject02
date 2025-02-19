@@ -37,7 +37,7 @@
 						</div>
 						<div class="form-floating mb-3">
 							<input id="mphone-input" name="mphone" class="form-control mphoneinput" type="text" placeholder="사용자 전화번호">
-							<label for="floatingInput3">전화번호</label>
+							<label for="floatingInput3">전화번호(하이픈 금지)</label>
 						</div>
 						<!-- 회원가입 버튼 -->
 						<button class="w-100 btn btn-lg btn-primary mb-3" type="button" onclick ="memberSignUp()">가입</button>

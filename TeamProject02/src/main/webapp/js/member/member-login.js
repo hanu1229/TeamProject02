@@ -23,7 +23,8 @@ const memberLogin = ( ) => {
 	fetch( '/TeamProject02/afiliado/login' , option )
 		.then( response => response.json() )
 		.then( data => { 
-			if( data > 0 ){ alert('로그인성공'); 
+			if( data > 0 ){
+				alert('로그인성공');
 				location.href="/TeamProject02/client/map.jsp";
 			}
 			else{ alert('로그인실패'); }

@@ -3,21 +3,22 @@ console.log('member-signup.js!!');
 // 회원가입 js
 const memberSignUp = ( ) => {
 	
-	//	입력한 값 가져오기
-	const mid = document.querySelector('.midinput').value;
-	const mpwd = document.querySelector('.mpwdinput').value;
-	const mname = document.querySelector('.mnameinput').value;
-	const mphone = document.querySelector('.mphoneinput').value;
-	
-	// 객체화
-	const obj = { mid : mid , mpwd : mpwd , mname : mname , mphone : mphone }
-	 
+	//	1. form 을 한번에 가져오기
+	//const msignupform = document.querySelector('#msignupform'); // form 전체 가져오기
+	// console.log( msiupform );
+	const mid = document.querySelector('#mid-input');
+	const mpwd = document.querySelector('#mpwd-input');
+	const mname = document.querySelector('#mname-input');
+	const mphone = document.querySelector('#mphone-input');
+	let obj = {mid: mid.value, mpwd : mpwd.value, mname : mname.value, mphone : mphone.value};
+	// FormData
+	//const msignupformData = new FormData( msignupform );
 	// option
 	const option = {
 		method : 'POST' ,
-		headers : { 'Content-Type' : 'application/json' },
-		body : JSON.stringify( obj )
-	}
+		headers : {"Conetent-Type" : "aplication/json"},
+		body : JSON.stringify(obj)
+	} 
 	 
 	// fetch
 	fetch(`/TeamProject02/afiliado/signup` , option )

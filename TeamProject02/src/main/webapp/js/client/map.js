@@ -49,19 +49,21 @@ function addMarkers(properties) {
     markers = [];
 
     properties.forEach(property => {
-        const position = new kakao.maps.LatLng(property.plat, property.plong);
-
-        const marker = new kakao.maps.Marker({
-            position: position,
-            title: property.paddress
-        });
-
-        // 마커 클릭 이벤트 추가
-        kakao.maps.event.addListener(marker, 'click', function () {
-            showPropertyDetail1(property);
-        });
-
-        markers.push(marker);
+		if(property.psell == 0) {
+	        const position = new kakao.maps.LatLng(property.plat, property.plong);
+	
+	        const marker = new kakao.maps.Marker({
+	            position: position,
+	            title: property.paddress
+	        });
+	
+	        // 마커 클릭 이벤트 추가
+	        kakao.maps.event.addListener(marker, 'click', function () {
+	            showPropertyDetail1(property);
+	        });
+	
+	        markers.push(marker);
+		}
     });
 
     // 클러스터러에 마커 추가
@@ -99,14 +101,8 @@ function showPropertyDetail1(property) {
 		<p>구조:${property.pstructure}</p>
 		<p>등록일:${property.pdate}</p>
 		<p>설명: ${property.padd}</p>		
-		
-		
-		
-		
 		<button class="btn btn-primary" onclick="buy(${property.pno})">구매하기</button>
 		<button class="btn btn-primary" onclick="closeDetail()">닫기</button>
-		
-		
 		`;
     detailContainer.style.display = "block";
 }
@@ -118,21 +114,27 @@ function closeDetail() {
 
 // 매물 구매 함수
 function buy(pno){
-	let option={
-		method:"POST",
-		headers:{"Content-Type":"application/json"},
-		body:JSON.stringify({pno:pno})
+	let state = confirm("정말로 구매하시겠습니까?");
+	if(state) {		
+		let option={
+			method:"POST",
+			headers:{"Content-Type":"application/json"},
+			body:JSON.stringify({pno:pno})
+			
+		}
+		
+		fetch('/TeamProject02/client/view',option)
+		.then(r=>r.json())
+		.then(data=>{
+			if(data==true){
+				alert("구매완료했습니다");
+				initMap();
+			}else{alert("구매실패했습니다.")}
+		})
+		.catch(e=>{console.log(e)});
+	} else {
 		
 	}
-	
-	fetch('/TeamProject02/client/view',option)
-	.then(r=>r.json())
-	.then(data=>{
-		if(data==true){
-			alert("구매완료했습니다")
-		}else{alert("구매실패했습니다.")}
-	})
-	.catch(e=>{console.log(e)});
 }
 
 

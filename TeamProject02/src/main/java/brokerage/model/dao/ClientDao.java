@@ -231,7 +231,12 @@ public class ClientDao extends Dao {
     		ps.setInt(5, brokerageDto.getPno());
     		int count = ps.executeUpdate();
     		if(count==1) {
-    			return true;
+    			sql = "update property set psell = ? where pno = ?;";
+    			ps = conn.prepareStatement(sql);
+    			ps.setInt(1, 1);
+    			ps.setInt(2, brokerageDto.getPno());
+    			int count2 = ps.executeUpdate();
+    			if(count2 == 1) { return true; }
     		}
     		
     	}catch (Exception e) {
