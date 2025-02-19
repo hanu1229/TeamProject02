@@ -62,7 +62,7 @@ public class MemberDao extends Dao{
 		}catch(SQLException e) {System.out.println(e);}
 		return 0; // 0이면 로그인 실패
 	}
-	
+
 	// 회원정보 수정 메소드
 	public boolean update(MemberDto memberDto) {
 		try {
