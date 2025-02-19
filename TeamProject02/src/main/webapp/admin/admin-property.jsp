@@ -29,6 +29,22 @@
 						
 					</tbody>
 				</table>
+				<!-- Button trigger modal -->
+				<button id = "modal-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style = "display : none;">
+					모달창
+				</button>
+				<!-- Button trigger modal -->
+				<!-- Modal -->
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<!-- modal-content -->
+						<div id = "property-modal" class="modal-content">
+							
+						</div>
+						<!-- modal-content -->
+					</div>
+				</div>
+				<!-- Modal -->
 			</div>
 		</div>
 		

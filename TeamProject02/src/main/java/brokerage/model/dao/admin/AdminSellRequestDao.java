@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import brokerage.model.dao.Dao;
+import brokerage.model.dto.PropertyDto;
 import brokerage.model.dto.SellDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,37 @@ public class AdminSellRequestDao extends Dao {
 		return result;
 	}
 	
-	/** 신청한 매물 수락 또는 거절 */
+	/** 신청 매물 수락 */
+	public boolean accept(PropertyDto propertyDto) {
+		try {
+			String sql = "insert into property(pcategory, paddress, plat, plong, pbuilding, pstorey, parea, pyear, pstructure, puser, padd, mno, mprice) "
+					+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, propertyDto.getPcategory()); ps.setString(2, propertyDto.getPaddress());
+			ps.setDouble(3, propertyDto.getPlat()); ps.setDouble(4, propertyDto.getPlong());
+			ps.setInt(5, propertyDto.getPbuilding()); ps.setInt(6, propertyDto.getPstorey());
+			ps.setDouble(7, propertyDto.getParea()); ps.setString(8, propertyDto.getPyear());
+			ps.setString(9, propertyDto.getPstructure()); ps.setString(10, propertyDto.getPuser());
+			ps.setString(11, propertyDto.getPadd()); ps.setInt(12, propertyDto.getMno());
+			ps.setInt(13, propertyDto.getMprice());
+			int count = ps.executeUpdate();
+			if(count == 1) {
+				sql = "update sell_request set sstate = 1 where sno = ?;";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, propertyDto.getSno());
+				int count2 = ps.executeUpdate();
+				if(count2 == 1) {
+					return true;					
+				}
+			}
+		} catch(SQLException e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+	
+	
+	/** 신청 매물 거절 */
 	public SellDto update(SellDto sellDto) {
 		SellDto result = new SellDto();
 		try {

@@ -45,4 +45,6 @@ public class PropertyDto {
 	private int mprice;
 	//
 	private String photo;
+	// 신청 매물 번호
+	private int sno;
 } // c end
