@@ -2,12 +2,20 @@
 	font-family: '맑은고딕';
 	box-sizing: border-box;
 }
+body {
+    padding-top: 70px; /* 예상되는 헤더 높이 (JS가 적용되기 전 임시) */
+}
 a{
 	text-decoration: none; color: inherit;
 }
-.header_nav, #estateview_wrap{
+#estateview_wrap{
 	width: 1200px;
 	margin: 0 auto;
+}
+.header_nav {
+    background-color: white; /* 배경색 추가 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 살짝 그림자 효과 */
+    z-index: 1030; /* 다른 요소들보다 위에 위치 */
 }
 .textarea{
 	resize: none;

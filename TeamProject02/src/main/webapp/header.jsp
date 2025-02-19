@@ -37,8 +37,8 @@
 	<!-- 모달 end -->
 	
 	<!-- 부트스트랩 nav -->
-		<nav class="navbar navbar-expand-lg header_nav">
-	  		<div class="container-fluid">
+		<nav class="header_nav navbar navbar-expand-lg fixed-top">
+	  		<div class="container-fluid mx-auto" style="max-width: 1200px;">
 	  			<div class="header_logo">
 		    		<a class="navbar-brand" href="/TeamProject02/client/map.jsp"> <!-- 로고 -->
 		    			<img class="header_logo" src="/TeamProject02/img/logo.png">
@@ -60,7 +60,7 @@
 	    		</button>
     <!-- 메뉴박스 -->
 		   	 	<div class="collapse navbar-collapse menu" id="navbarSupportedContent">
-		     		<ul class="getmenu navbar-nav me-auto mb-2 mb-lg-0">
+		     		<ul class="getmenu navbar-nav mx-auto ">
 		        		<!--  <li class="nav-item">
 		         			<a class="nav-link py-0" href="/TeamProject02/member/memberLogin.jsp">로그인</a>
 		        		</li>

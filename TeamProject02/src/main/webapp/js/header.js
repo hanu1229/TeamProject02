@@ -1,5 +1,17 @@
 console.log( 'header.js!!' );
 
+// 헤더 높이 계산해서 body에 padding-top 추가해주는 함수
+document.addEventListener("DOMContentLoaded", function () { // 웹페이지가 완전히 로드될때 실행
+	// 헤더 요소 선택
+    const header = document.querySelector(".header_nav");
+    if (header) {
+		// offsetHeight : 요소의 실제 높이( 패딩 + 보더 포함 ) 을 px로 반환
+		// body에 paddingTop을 반환값으로 설정
+        document.body.style.paddingTop = header.offsetHeight + "px";
+        console.log("헤더 높이(px):", header.offsetHeight);
+    }
+});
+
 // 로그인 정보 요청 함수
 const mgetLoginInfo = ( ) => {
 	
