@@ -74,9 +74,10 @@ function showPropertyDetail(property) {
     detailContainer.innerHTML = `
         <h3>${property.paddress}</h3>
         <p>${property.paddress}</p>
-        <p>가격: ${property.paddress}원</p>
-        <p>설명: ${property.paddress}</p>
+        <p>가격: ${property.mprice*10000}원</p>
+        <p>설명: ${property.padd}</p>		
         <button onclick="closeDetail()">닫기</button>
+		<button onclick="DetailOpen()">상세정보보기</button>
     `;
     detailContainer.style.display = "block";
 }

@@ -210,6 +210,7 @@ public class ClientDao extends Dao {
                 dto.setPdate(rs.getString("pdate"));
                 dto.setPsell(rs.getInt("psell"));
                 dto.setMno(rs.getInt("mno"));
+                dto.setMprice(rs.getInt("mprice"));
                 list.add(dto);
             }
         } catch(Exception e) {
