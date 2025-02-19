@@ -14,7 +14,7 @@ const memberSignUp = ( ) => {
 		method : 'POST' ,
 		body : msignupformData
 	}
-	
+	 
 	// fetch
 	fetch(`/TeamProject02/afiliado/signup` , option )
 		.then( response => response.json() )
