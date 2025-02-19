@@ -59,6 +59,7 @@ public class MemberInfoController extends HttpServlet{
 		return true; // 1,2,3 을 통과하면 유효하다고 판단 true 반환
 	} //f end
 	
+	// 회원 정보 찾기
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -80,7 +81,9 @@ public class MemberInfoController extends HttpServlet{
 		MemberDto foundMember = MemberDao.getInstance().findMember(memberDto);
 		
 		// JSON 응답
-		String jsonResponse = (foundMember != null) ? mapper.writeValueAsString(foundMember) : "{\"error\": \"일치하는 회원 정보가 없습니다.\"}";
+		// foundMember 변수가 null인지 여부를 검사하는 삼항 연산자(조건부 연산자) 사용
+		String jsonResponse = (foundMember != null) ? // foundMember가 null이 아닌 경우 → 찾은 회원 정보를 JSON으로 변환
+				mapper.writeValueAsString(foundMember) : "{\"error\": \"일치하는 회원 정보가 없습니다.\"}"; // foundMember가 null인 경우 → 에러 메시지를 JSON 형식의 문자열로 반환
 		// resp.setContentType("application/json");
 		resp.getWriter().print(jsonResponse);
 	}
