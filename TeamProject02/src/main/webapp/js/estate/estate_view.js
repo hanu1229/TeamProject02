@@ -52,7 +52,7 @@ const getPageBtn = (response, pcategory) => {
 const findAll = (page = 1, pcategory) => {
     const mno = new URL(location.href).searchParams.get("mno"); // 현재 mno 값
     // pcategory가 10이면 모든 카테고리의 데이터를 요청
-    const url = `/TeamProject02/estate/info?mno=${mno}&pcategory=${pcategory === "10" ? "" : pcategory}&page=${page}`;
+    const url = `/TeamProject02/estate/info?mno=${mno}&pcategory=${pcategory}&page=${page}`;  // 빈 문자열 대신 '10'으로 보내기
 
     fetch(url)
         .then((res) => res.json())  // 응답을 JSON 형태로 변환

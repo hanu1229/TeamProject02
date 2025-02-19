@@ -34,32 +34,64 @@ public class EstateDao extends Dao{
 		
 	} // f end
 	
-	// 매물의 전체 개수 조회
-	public int getTotalSize( int pcategory ) {
-		try {
-			String sql = "select count(*) from property where pcategory = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, pcategory);
-			ResultSet rs = ps.executeQuery();
-			if( rs.next() ) { return rs.getInt( 1 ); }
-		}catch (Exception e) { System.out.println( e ); }
-		return 0;
-	} // f end
-	
-	// 매물 전체 개수 조회
-	public ArrayList<PropertyDto> findAll(int mno, int pcategory, int startRow, int display) {
-	    ArrayList<PropertyDto> list = new ArrayList<PropertyDto>();
+	// 매물의 전체 개수 조회 (특정 회원의 매물만 조회)
+	public int getTotalSize(int mno, int pcategory) {
 	    try {
-	        String sql = " select * from property p "
-	                + " inner join member m on p.mno = m.mno "
-	                + " where p.mno = ? and p.pcategory = ? "
-	                + " order by p.pno desc "
-	                + " limit ?, ?";  // limit을 사용하여 페이징 처리
-	        PreparedStatement ps = conn.prepareStatement(sql);
-	        ps.setInt(1, mno);  // 로그인한 사용자의 mno를 설정
-	        ps.setInt(2, pcategory);  // 카테고리
-	        ps.setInt(3, startRow);  // 시작 row
-	        ps.setInt(4, display);   // 표시할 매물 수
+	        String sql;
+	        PreparedStatement ps;
+
+	        if (pcategory == 10) { // 전체 카테고리 조회
+	            sql = "SELECT COUNT(*) FROM property WHERE mno = ?";
+	            ps = conn.prepareStatement(sql);
+	            ps.setInt(1, mno);
+	        } else { // 특정 카테고리 조회
+	            sql = "SELECT COUNT(*) FROM property WHERE mno = ? AND pcategory = ?";
+	            ps = conn.prepareStatement(sql);
+	            ps.setInt(1, mno);
+	            ps.setInt(2, pcategory);
+	        }
+
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            int totalSize = rs.getInt(1);
+	            System.out.println("Total Size: " + totalSize);  // ✅ 디버깅용 로그
+	            return totalSize;
+	        }
+	    } catch (Exception e) {
+	        System.out.println("getTotalSize SQL Error: " + e);
+	    }
+	    return 0;
+	}
+	
+	public ArrayList<PropertyDto> findAll(int mno, int pcategory, int startRow, int display) {
+	    ArrayList<PropertyDto> list = new ArrayList<>();
+	    try {
+	        String sql;
+	        PreparedStatement ps;
+
+	        if (pcategory == 10) {  // 모든 카테고리의 매물을 조회
+	            sql = "SELECT * FROM property p "
+	                + "INNER JOIN member m ON p.mno = m.mno "
+	                + "WHERE p.mno = ? "
+	                + "ORDER BY p.pno DESC "
+	                + "LIMIT ?, ?";
+	            ps = conn.prepareStatement(sql);
+	            ps.setInt(1, mno);
+	            ps.setInt(2, startRow);  // ✅ startRow 값 설정
+	            ps.setInt(3, display);   // ✅ display 값 설정
+	        } else {  // 특정 카테고리만 조회
+	            sql = "SELECT * FROM property p "
+	                + "INNER JOIN member m ON p.mno = m.mno "
+	                + "WHERE p.mno = ? AND p.pcategory = ? "
+	                + "ORDER BY p.pno DESC "
+	                + "LIMIT ?, ?";
+	            ps = conn.prepareStatement(sql);
+	            ps.setInt(1, mno);
+	            ps.setInt(2, pcategory);
+	            ps.setInt(3, startRow);
+	            ps.setInt(4, display);
+	        }
+
 	        ResultSet rs = ps.executeQuery();
 	        while (rs.next()) {
 	            PropertyDto propertyDto = new PropertyDto();
@@ -80,9 +112,11 @@ public class EstateDao extends Dao{
 	            propertyDto.setMno(rs.getInt("mno"));
 	            list.add(propertyDto);
 	        }
-	    } catch (SQLException e) { System.out.println(e); }
+	    } catch (SQLException e) {
+	        System.out.println("findAll SQL Error: " + e);
+	    }
 	    return list;
-	} // f end
+	}
 
 	// 본인 매물 수정
 	public boolean estateUpdate(PropertyDto propertyDto) {
@@ -114,12 +148,10 @@ public class EstateDao extends Dao{
 		try {
 			String sql = "update member set msell_state = 3 where mno = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-	        // 테스트용으로 mno를 1로 설정
-	        ps.setInt(1, 1);  // 현재는 1로 설정해서 테스트
+
+	        ps.setInt(1, memberDto.getMno() );  // 현재는 1로 설정해서 테스트
 	        System.out.println(ps);
 	        
-	        // 나중에 세션에서 mno를 받아와서 사용하려면 아래 코드의 주석을 해제하세요.
-	        // ps.setInt(1, memberDto.getMno()); // 나중에 세션에서 memberDto의 mno를 사용
 			int count = ps.executeUpdate();
 			if( count == 1 ) { return true; }
 		}catch( SQLException e ) { System.out.println( e ); }
