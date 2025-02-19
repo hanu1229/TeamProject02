@@ -1,5 +1,7 @@
 package brokerage.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 
@@ -27,12 +29,26 @@ public class ViewController extends HttpServlet { //진석작성
 
 		List<PropertyDto> result = ClientDao.getInstance().findAllProperties();
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(result);
+//		String jsonResult = mapper.writeValueAsString(result);
+		String jsonResult = null;
+		
+		//아파트 사진띄우기용
+		//String type = req.getParameter("type");
+		if(result != null) {
+			System.out.println("실행1");
+			//int pno = Integer.parseInt(req.getParameter("pno"));
+			//해당 매물 이미지들만 조회할수있게
+			List<String> imges = ClientDao.getInstance().findImg();
+			for(int i =0; i<=imges.size()-1;i++) {
+				String str = req.getServletContext().getRealPath("/img/")+imges.get(i);
+				result.get(i).setPhoto(str);
+			}
+			jsonResult = mapper.writeValueAsString(result);
+		}
+
 		resp.setContentType("application/json");
 		resp.getWriter().print(jsonResult);
-		
-		
-	}
+	}//get end
 	
 	@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,6 +61,8 @@ public class ViewController extends HttpServlet { //진석작성
 			resp.getWriter().print(result);
 			
 		}
+	
+
 	
 }// class end
 

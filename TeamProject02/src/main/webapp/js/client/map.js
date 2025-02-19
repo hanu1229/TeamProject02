@@ -89,7 +89,8 @@ function showPropertyDetail1(property) {
 	
 	
     detailContainer.innerHTML = `
-        <h3>${property.paddress}</h3> 
+        <h3>${property.paddress}</h3>
+		<img src="${property.photo}"/> 
         <p>${categoryName}</p>
         <p>가격: ${property.mprice*10000}원</p>
         <p>동:${property.pbuilding}</p>		
@@ -140,6 +141,7 @@ function buy(pno){
 window.onload = function () {
     initMap();
 };
+
 
 
 

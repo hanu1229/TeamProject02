@@ -11,7 +11,9 @@
 </head>
 <body>
     <div class="map-container">
-    <div class="property-detail"></div>
+    <div class="property-detail">
+    	<div class="property-images"></div>
+    </div>
         <div id="map"></div>
         <div class="sidebar">
             <div class="property-list"></div>
