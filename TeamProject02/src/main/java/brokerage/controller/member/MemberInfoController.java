@@ -59,26 +59,50 @@ public class MemberInfoController extends HttpServlet{
 		return true; // 1,2,3 을 통과하면 유효하다고 판단 true 반환
 	} //f end
 	
+//	// 로그인 정보 가져오기
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//	    // 1. 세션 객체 가져오기
+//	    HttpSession session = req.getSession();
+//	    
+//	    // 2. 세션에서 "loginMno" 속성 값 가져오기
+//	    Object object = session.getAttribute("loginMno");
+//
+//	    // 3. 만약 세션에 값이 있으면 Integer로 변환, 없으면 null
+//	    Integer loginMno = (object != null) ? (Integer) object : null;
+//
+//	    // 4. JSON 변환 (숫자 또는 null 값)
+//	    ObjectMapper mapper = new ObjectMapper();
+//	    String jsonResult = mapper.writeValueAsString(loginMno);
+//
+//	    // 5. 응답 설정 (JSON 형식으로 반환)
+//	    resp.setContentType("application/json");
+//	    resp.getWriter().print(jsonResult);
+//	}
+	
 	// 로그인 정보 가져오기
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    // 1. 세션 객체 가져오기
-	    HttpSession session = req.getSession();
-	    
-	    // 2. 세션에서 "loginMno" 속성 값 가져오기
-	    Object object = session.getAttribute("loginMno");
-
-	    // 3. 만약 세션에 값이 있으면 Integer로 변환, 없으면 null
-	    Integer loginMno = (object != null) ? (Integer) object : null;
-
-	    // 4. JSON 변환 (숫자 또는 null 값)
-	    ObjectMapper mapper = new ObjectMapper();
-	    String jsonResult = mapper.writeValueAsString(loginMno);
-
-	    // 5. 응답 설정 (JSON 형식으로 반환)
-	    resp.setContentType("application/json");
-	    resp.getWriter().print(jsonResult);
-	}
+		// 1. [HTTP 요청의 header body 자료(JSON)를 자바(DTO)로 받는다.]
+		// 2. [ 데이터 유효성검사 ] 
+		// 3. [ DAO 에게 데이터 전달 하고 응답 받기 ]
+		MemberDto result = null;
+		// (1) 현재 로그인된 회원의 번호 : 세션객체 내 존재. 속성명 : loginMno
+		HttpSession session =  req.getSession(); // 세션 가져오기.
+		Object object = session.getAttribute("loginMno"); // 세션객체내 지정한 속성 값 가져오기.
+		// (2) 만약에 세션객체내 지정한 속성값이 존재하면 로그인회원번호를 타입변환한다.
+		if( object != null ) {
+			int loginMno = (Integer)object;
+			// (3) 현재 로그인된 회원번호를 매개변수로 전달한다.
+			result = MemberDao.getInstance().myInfo(loginMno);
+		} // if end
+		// 4. [ 자료(DTO/자바)타입을 JS(JSON)타입으로 변환한다. ]
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResult = mapper.writeValueAsString( result );
+		// 5. [ HTTP 응답의 header body 로 application/json 으로 응답/반환하기 ]
+		resp.setContentType("application/json");
+		resp.getWriter().print( jsonResult );
+	} // f end
 	
 	// logout
 	@Override

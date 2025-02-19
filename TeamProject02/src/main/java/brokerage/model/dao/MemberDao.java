@@ -84,6 +84,27 @@ public class MemberDao extends Dao{
 		return false; // 수정 실패시
 	}
 	
+	// 로그인된 회원의 정보 조회 메소드
+	public MemberDto myInfo( int loginMno ) {
+		try {
+			String sql ="select * from member where mno = ? "; // [1] SQL 작성한다.
+			PreparedStatement ps = conn.prepareStatement(sql); // [2] DB와 연동된 곳에 SQL 기재한다.
+			ps.setInt(  1 , loginMno); // [*] 기재된 SQL 에 매개변수 값 대입한다.
+			ResultSet rs = ps.executeQuery(); // [3] 기재된 SQL 실행하고 결과를 받는다.
+			if( rs.next() ) { // [4] 결과에 따른 처리 및 반환를 한다.
+				MemberDto memberDto = new MemberDto();
+				memberDto.setMno( rs.getInt("mno") );
+				memberDto.setMid( rs.getString("mid") );
+				memberDto.setMname( rs.getString("mname" ) );
+				memberDto.setMphone( rs.getString("mphone") );
+				memberDto.setMdate( rs.getString("mdate") );
+				memberDto.setMsell( rs.getInt("msell_state") );
+				return memberDto; // 조회된 회원정보를 반환한다.
+			}
+		}catch(SQLException e ) { System.out.println(e);}
+		return null; // 조회된 회원정보가 없을때. null 반환한다
+	} // f end
+	
 	// 회원정보 찾기 메소드
 	// 회원 이름과 전화번호를 이용해 회원 ID와 비밀번호 찾기
 //	public MemberDto findMember(MemberDto memberDto) {

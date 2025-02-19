@@ -7,9 +7,13 @@ const mgetLoginInfo = ( ) => {
 	const option = { method : 'GET' }
 	// 로그인 메뉴를 출력할 구역 가져오기
 	let getmenu = document.querySelector('.getmenu');
+	// 마이페이지 구역 가져오기
+	let msellbox = document.querySelector('.msellbox');
 	
-	// html 변수
+	// 로그인 메뉴 html
 	let html = '';
+	// 마이페이지 html
+	let msellboxHtml = '';
 	
 	fetch( `/TeamProject02/afiliado/info` , option )
 		.then( response => response.json() )
@@ -29,9 +33,32 @@ const mgetLoginInfo = ( ) => {
 							<a class="nav-link py-0" href="/TeamProject02/member/memberLogin.jsp"
 							data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">마이페이지</a>
 						</li>`
+				// 로그인된 회원 정보에서 msell.state 값 확인
+				console.log( data );
+				console.log( data.msell );
+				const msellState = data.msell;
+				// 로그인한 회원의 판매권한 값이 1이거나 관리자(9)면 매물등록신청 버튼 유
+				if( msellState === 1 || msellState === 9 ) {
+					msellboxHtml += `<div class="d-grid gap-2">
+								<button class="btn btn-outline-dark" type="button">회원정보수정</button>
+								<button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
+								<button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
+								<button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estatewrite.jsp'">매물등록신청</button>
+								<button class="btn btn-outline-dark Hlogout" type="button" onclick="logout()">로그아웃</button>				  
+							</div>`
+				}else{ // 권한 값이 1이 아니면 매물등록 신청 버튼 무
+					msellboxHtml += `<div class="d-grid gap-2">
+								<button class="btn btn-outline-dark" type="button">회원정보수정</button>
+								<button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
+								<button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
+								<button class="btn btn-outline-dark Hlogout" type="button" onclick="logout()">로그아웃</button>				  
+							</div>`
+				}
+				
 			} // if end
-			// 구성만 메뉴들 반영
-			getmenu.innerHTML = html ;
+			// 구성한 메뉴들 반영
+			getmenu.innerHTML = html;
+			msellbox.innerHTML = msellboxHtml;
 		})
 		.catch( error => { console.log( error ); } )
 	

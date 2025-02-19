@@ -78,14 +78,14 @@
 			<div class="offcanvas-header ">
 			  <h5 id="offcanvasRightLabel" class="fw-bold mx-auto">마이페이지</h5>
 			</div>
-			<div class="offcanvas-body">
-			  <div class="d-grid gap-2">
+			<div class="msellbox offcanvas-body">
+			  <!-- <div class="d-grid gap-2">
 				  <button class="btn btn-outline-dark" type="button">회원정보수정</button>
 				  <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
 				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
 				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estatewrite.jsp'">매물등록신청</button>
 				  <button class="btn btn-outline-dark Hlogout" type="button" onclick="logout()">로그아웃</button>				  
-				</div>
+				</div>  -->
 			</div>
 		</div>
 	</div> <!-- 부트스트랩 nav end -->
