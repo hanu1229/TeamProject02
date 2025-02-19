@@ -35,7 +35,7 @@ public class ViewController extends HttpServlet { //진석작성
 		
 		//아파트 사진띄우기용
 		//String type = req.getParameter("type");
-		if(result != null) {
+		if(result != null) { 
 			System.out.println("실행1");
 			//int pno = Integer.parseInt(req.getParameter("pno"));
 			//해당 매물 이미지들만 조회할수있게
