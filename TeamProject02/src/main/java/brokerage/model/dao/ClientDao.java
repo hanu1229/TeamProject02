@@ -219,7 +219,7 @@ public class ClientDao extends Dao {
         }
         return list;
     }
-    
+    //구매함수
     public boolean buy(BrokerageDto brokerageDto) {
     	try {
     		String sql = "INSERT INTO brokerage(bfile, bmanager, bcomment, mno, pno) VALUES(?, ?, ?, ? ,?)";
@@ -245,5 +245,24 @@ public class ClientDao extends Dao {
     	}
     	return false;
     	
+    }
+    
+    //매물번호 이미지 찾기 함수
+    public ArrayList<String> findImg() {
+        ArrayList<String> images = new ArrayList<>();
+        String sql = "SELECT phname FROM photo";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                images.add(rs.getString("phname"));
+            }
+        } catch(Exception e) {
+            System.out.println("findImagesByPno 예외: " + e);
+        }
+        
+        return images;
     }
 }// class end
