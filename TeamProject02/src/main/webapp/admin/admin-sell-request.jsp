@@ -30,7 +30,7 @@
 					</tbody>
 				</table>
 				<!-- Button trigger modal -->
-				<button id = "modal-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick = "acceptSell()">
+				<button id = "modal-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style = "display : none;" onclick = "acceptSell()">
 					모달창
 				</button>
 				<!-- Button trigger modal -->

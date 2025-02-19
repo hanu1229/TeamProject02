@@ -184,6 +184,7 @@ function submitProperty() {
 
 function ttemp(inputType, textareaType) {
 	let str = ``;
+	let inputList
 	for(let index = 0; index < inputType.length; index++) {
 		str += inputType[index].value + "\n";
 	}
