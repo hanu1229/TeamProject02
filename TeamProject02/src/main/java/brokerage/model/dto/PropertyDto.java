@@ -41,4 +41,6 @@ public class PropertyDto {
 	private int mno;
 	// 회원이름
 	private String mname;
+	//부동산매물 가격
+	private int mprice;
 } // c end
