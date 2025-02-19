@@ -1,8 +1,8 @@
 function logout() {
-    fetch('/TeamProject02/estate/info', { method: 'DELETE' })
+    fetch('/TeamProject02/afiliado/info', { method: 'DELETE' })
         .then(response => response.json())
         .then(data => {
-            if (data.logout) {
+            if (data) {
                 alert("로그아웃 되었습니다.");
                 location.href = "/TeamProject02/client/map.jsp";
             }

@@ -201,12 +201,47 @@ create table photo(
 
 # 사진 추가 --> sno / 0 : 
 # 기본 : 
-insert into photo(phname, pno) values ('photo_사진1.jpg', 1);
-insert into photo(phname, pno) values ('photo_사진2.jpg', 2);
-insert into photo(phname, pno) values ('photo_사진3.jpg', 4);
-insert into photo(phname, pno) values ('photo_사진4.jpg', 5);
-insert into photo(phname, pno) values ('photo_사진5.jpg', 1);
-insert into photo(phname, pno) values ('photo_사진6.jpg', 4);
+insert into photo(phname, pno) values ('photo_1.jpg', 1);
+insert into photo(phname, pno) values ('photo_2.jpg', 2);
+insert into photo(phname, pno) values ('photo_3.jpg', 3);
+insert into photo(phname, pno) values ('photo_4.jpg', 4);
+insert into photo(phname, pno) values ('photo_5.jpg', 5);
+insert into photo(phname, pno) values ('photo_6.jpg', 6);
+insert into photo(phname, pno) values ('photo_7.jpg', 7);
+insert into photo(phname, pno) values ('photo_8.jpg', 8);
+insert into photo(phname, pno) values ('photo_9.jpg', 9);
+insert into photo(phname, pno) values ('photo_10.jpg', 10);
+insert into photo(phname, pno) values ('photo_11.jpg', 11);
+insert into photo(phname, pno) values ('photo_12.jpg', 12);
+insert into photo(phname, pno) values ('photo_13.jpg', 13);
+insert into photo(phname, pno) values ('photo_14.jpg', 14);
+insert into photo(phname, pno) values ('photo_15.jpg', 15);
+insert into photo(phname, pno) values ('photo_16.jpg', 16);
+insert into photo(phname, pno) values ('photo_17.jpg', 17);
+insert into photo(phname, pno) values ('photo_18.jpg', 18);
+insert into photo(phname, pno) values ('photo_19.jpg', 19);
+insert into photo(phname, pno) values ('photo_20.jpg', 20);
+insert into photo(phname, pno) values ('photo_21.jpg', 21);
+insert into photo(phname, pno) values ('photo_22.jpg', 22);
+insert into photo(phname, pno) values ('photo_23.jpg', 23);
+insert into photo(phname, pno) values ('photo_24.jpg', 24);
+insert into photo(phname, pno) values ('photo_25.jpg', 25);
+insert into photo(phname, pno) values ('photo_26.jpg', 26);
+insert into photo(phname, pno) values ('photo_27.jpg', 27);
+insert into photo(phname, pno) values ('photo_28.jpg', 28);
+insert into photo(phname, pno) values ('photo_29.jpg', 29);
+insert into photo(phname, pno) values ('photo_30.jpg', 30);
+insert into photo(phname, pno) values ('photo_31.jpg', 31);
+insert into photo(phname, pno) values ('photo_32.jpg', 32);
+insert into photo(phname, pno) values ('photo_33.jpg', 33);
+insert into photo(phname, pno) values ('photo_34.jpg', 34);
+insert into photo(phname, pno) values ('photo_35.jpg', 35);
+insert into photo(phname, pno) values ('photo_36.jpg', 36);
+insert into photo(phname, pno) values ('photo_37.jpg', 37);
+insert into photo(phname, pno) values ('photo_38.jpg', 38);
+insert into photo(phname, pno) values ('photo_39.jpg', 39);
+insert into photo(phname, pno) values ('photo_40.jpg', 40);
+
 
 # 중개한매물테이블
 drop table if exists brokerage;

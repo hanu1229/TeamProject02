@@ -84,7 +84,7 @@
 				  <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#saleModal">판매권한신청</button>
 				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estateview.jsp'">본인매물조회</button>
 				  <button class="btn btn-outline-dark" type="button" onclick="window.location.href='/TeamProject02/estate/estatewrite.jsp'">매물등록신청</button>
-				  <button class="btn btn-outline-dark Hlogout" type="button" onclick="logout">로그아웃</button>				  
+				  <button class="btn btn-outline-dark Hlogout" type="button" onclick="logout()">로그아웃</button>				  
 				</div>
 			</div>
 		</div>
@@ -94,6 +94,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="/TeamProject02/js/estate/estate_sellupdate.js" type="text/javascript"></script>
 <script src="/TeamProject02/js/header.js" type="text/javascript"></script>
+<script src="/TeamProject02/js/member/member-logout.js" type="text/javascript"></script>
 	
 </body>
 </html>
