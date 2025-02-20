@@ -93,15 +93,15 @@ function showPropertyDetail1(property) {
     detailContainer.innerHTML = `
         <h3>${property.paddress}</h3>
 		<img src="${property.photo}" style = "width: 300px; object-fit:cover;"/> 
-        <p>${categoryName}</p>
-        <p>가격: ${property.mprice*10000}원</p>
-        <p>동:${property.pbuilding}</p>		
-		<p>층수:${property.pstorey}</p>
-		<p>면적:${property.parea}</p>
-		<p>준공년도:${property.pyear}</p>
-		<p>구조:${property.pstructure}</p>
-		<p>등록일:${property.pdate}</p>
-		<p>설명: ${property.padd}</p>		
+        <p style = "margin : 5px 0px; font-weight:bold;">${categoryName}</p>
+        <p style = "margin : 5px 0px; font-weight:bold;">가격: ${property.mprice*10000}원</p>
+        <p style = "margin : 5px 0px; font-weight:bold;">동:${property.pbuilding}</p>		
+		<p style = "margin : 5px 0px; font-weight:bold;">층수:${property.pstorey}</p>
+		<p style = "margin : 5px 0px; font-weight:bold;">면적:${property.parea}</p>
+		<p style = "margin : 5px 0px; font-weight:bold;">준공년도:${property.pyear}</p>
+		<p style = "margin : 5px 0px; font-weight:bold;">구조:${property.pstructure}</p>
+		<p style = "margin : 5px 0px; font-weight:bold;">등록일:${property.pdate}</p>
+		<p style = "margin : 5px 0px; font-weight:bold; ">설명: ${property.padd}</p>		
 		<button class="btn btn-primary" onclick="buy(${property.pno})">구매하기</button>
 		<button class="btn btn-primary" onclick="closeDetail()">닫기</button>
 		`;
