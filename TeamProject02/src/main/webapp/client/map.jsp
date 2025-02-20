@@ -60,7 +60,7 @@
   <script src="../js/client/Chatbot.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7be15cee355c36d1e316e018bafe0fc6&libraries=services,clusterer"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f41f90a5a5fc00d38b00640ba24cc30c&libraries=services,clusterer"></script>
    <script src="${pageContext.request.contextPath}/js/client/map.js"></script>
 	
 </body>
