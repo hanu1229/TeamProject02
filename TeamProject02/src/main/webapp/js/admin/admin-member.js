@@ -67,6 +67,9 @@ function msellToString(msell) {
 		case 1:
 			str = "O";
 			break;
+		case 3 :
+			str = "신청";
+			break;
 		case 9:
 			str = "관리자";
 			break;
@@ -82,7 +85,24 @@ function changeMsellState(mno) {
 	let msellState = document.querySelector(`#msell-state${mno}`);
 	let number = 0;
 	let state = ``;
-	if(msellState.innerHTML === "O") {
+	if(msellState.innerHTML === "신청") {
+		let number = Number(prompt("수락 : 1 / 거절 : 0"));
+		if(number === 0) {
+			requestChangeMsell(mno, number)
+			.then(data => {
+				console.log(data);
+				state = msellToString(data.msell);
+				msellState.innerHTML = state;
+			});
+		} else if(number === 1) {
+			requestChangeMsell(mno, number)
+			.then(data => {
+				console.log(data);
+				state = msellToString(data.msell);
+				msellState.innerHTML = state;
+			});
+		}
+	} else if(msellState.innerHTML === "O") {
 		number = 0;
 		requestChangeMsell(mno, number)
 		.then(data => {

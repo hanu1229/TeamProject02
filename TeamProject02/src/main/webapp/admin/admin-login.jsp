@@ -7,6 +7,7 @@
 		<title>관리자 로그인</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel = "stylesheet" href = "/TeamProject02/css/admin/admin.css">
+		<link href="/TeamProject02/css/index.css" rel="stylesheet">
 	</head>
 	<body>
 		<!-- 회원가입 폼 -->

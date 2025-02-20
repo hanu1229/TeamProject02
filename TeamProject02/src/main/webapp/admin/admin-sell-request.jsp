@@ -7,6 +7,7 @@
 		<title>신청 매물 목록</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel = "stylesheet" href = "/TeamProject02/css/admin/admin.css">
+		<link href="/TeamProject02/css/index.css" rel="stylesheet">
 	</head>
 	<body style = "height : 100%;">
 		<div class = "wrap"> 		
