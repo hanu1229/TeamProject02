@@ -62,6 +62,9 @@ function changeToSell(psell) {
 		case 1:
 			str = "판매";
 			break;
+		case 2:
+			str = "판매중지";
+			break;
 	}
 	return str;
 }

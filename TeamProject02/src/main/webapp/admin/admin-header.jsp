@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/TeamProject02/css/index.css" rel="stylesheet">
 	</head>
 	<body style = "height : 100%;">
 		<div id = "sidebar" class = "sidebar">	
