@@ -34,7 +34,7 @@ public class EstateController extends HttpServlet{
 	    System.out.println("EstateController dopost!!");
 	    
 	    // 1. 업로드 경로 가져오기
-	    String uploadPath = req.getServletContext().getRealPath("/upload");
+	    String uploadPath = req.getServletContext().getRealPath("/upload/sell");
 	    System.out.println(uploadPath);
 
 	    // 2. 만일 해당 경로가 없으면 만들어주기.
@@ -69,7 +69,7 @@ public class EstateController extends HttpServlet{
 	                }
 	            } else { // 9. 첨부파일 처리
 	                if (!item.getName().isEmpty()) {
-	                    filename = UUID.randomUUID().toString() + "-" + item.getName().replaceAll("-", "_");
+	                    filename = item.getName().replaceAll("-", "_");
 	                    // 업로드할 경로와 파일명 조합하여 경로 만들기
 	                    File uploadFile = new File(uploadPath + "/" + filename);
 	                    item.write(uploadFile);

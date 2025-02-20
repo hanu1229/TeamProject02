@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>매물 등록</title>
 	<link href="/TeamProject02/css/estate/estate.css" rel="stylesheet">
 </head>
 <body>
