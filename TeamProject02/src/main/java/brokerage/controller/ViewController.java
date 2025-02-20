@@ -69,6 +69,10 @@ public class ViewController extends HttpServlet { //진석작성
 			resp.setContentType("application/json");
 			resp.getWriter().print(result);
 			
+			
+			
+			
+			
 		}
 	
 

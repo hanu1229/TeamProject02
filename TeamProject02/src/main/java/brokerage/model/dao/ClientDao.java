@@ -265,4 +265,7 @@ public class ClientDao extends Dao {
         
         return images;
     }
+    
+    
+    
 }// class end
