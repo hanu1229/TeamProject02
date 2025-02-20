@@ -15,7 +15,8 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/estate/change")
 public class ChangeController extends HttpServlet{
-
+	
+	// 판매권한 변경
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 세션에서 회원번호 가져오기
