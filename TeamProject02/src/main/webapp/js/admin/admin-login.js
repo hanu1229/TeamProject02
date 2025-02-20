@@ -20,7 +20,7 @@ let onLogin = () => {
 	.then(data => {
 		if(data != 0) {
 			alert("로그인 성공");
-			location.href = "/TeamProject02/admin/admin-member.jsp"			
+			location.href = "/TeamProject02/admin/admin-member.jsp";
 		} else  {
 			alert("로그인 실패");
 		}

@@ -30,7 +30,7 @@ let printAll = () => {
 					</button>
 				</td>
 				<td>
-					<button class = "btn btn-primary" type = "button" onclick = "requestDeleteMember(${obj.mno})">탈퇴</button>
+					<button class = "btn btn-primary theme-color" type = "button" onclick = "requestDeleteMember(${obj.mno})">탈퇴</button>
 				</td>
 			</tr>
 			`;
@@ -142,19 +142,23 @@ function requestChangeMsell(mno, number) {
 
 /** 서버에게 회원삭제 요청 */
 function requestDeleteMember(mno) {
-	
-	let option = {method : "DELETE"};
-	fetch(`/TeamProject02/admin/member?mno=${mno}`, option)
-	.then(response => response.json())
-	.then(data => {
-		if(data == true) {
-			alert("정상적으로 탈퇴되었습니다.");
-			printAll();
-		} else {
-			alert("탈퇴에 실패했습니다.");
-		}
-	})
-	.catch(error => { console.log(error); });
+	let state = confirm("정말 탈퇴시키겠습니까?");
+	if(state == true) {		
+		let option = {method : "DELETE"};
+		fetch(`/TeamProject02/admin/member?mno=${mno}`, option)
+		.then(response => response.json())
+		.then(data => {
+			if(data == true) {
+				alert("정상적으로 탈퇴되었습니다.");
+				printAll();
+			} else {
+				alert("탈퇴에 실패했습니다.");
+			}
+		})
+		.catch(error => { console.log(error); });
+	} else {
+		alert("탈퇴를 취소합니다");
+	}
 	
 }
 
