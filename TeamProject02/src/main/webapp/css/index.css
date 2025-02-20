@@ -2,10 +2,6 @@
 	font-family: '맑은고딕';
 	box-sizing: border-box;
 }
-
-body {
-    padding-top: 70px; /* 예상되는 헤더 높이 (JS가 적용되기 전 임시) */
-}
 a{
 	text-decoration: none; color: inherit;
 }
