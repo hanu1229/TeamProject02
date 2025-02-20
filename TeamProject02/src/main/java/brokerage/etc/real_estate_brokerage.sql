@@ -38,7 +38,7 @@ create table sell_request(
 	# 신청번호
 	sno int unsigned auto_increment,
     # 첨부파일
-    sfile varchar(30) not null unique,
+    sfile varchar(255) not null unique,
     # 신청날짜
     sdate datetime default now(),
     # 신청상태
@@ -93,7 +93,7 @@ insert into sell_request(sfile, sadd, mno, sstate) values
 ('Sell_파일37.pdf', '호수전망 , 펜트리', 1, 1),
 ('Sell_파일38.pdf', '에어컨 5대', 1, 1),
 ('Sell_파일39.pdf', '올수리 경기장뷰', 1, 1),
-('Sell_파일40.pdf', '채광 좋음', 1, 0);
+('Sell_파일40.pdf', '채광 좋음', 1, 1);
 
 
 # 매물테이블
@@ -192,7 +192,7 @@ create table photo(
 	# 사진번호
 	phno int unsigned auto_increment,
     # 사진이름
-    phname varchar(30) not null unique,
+    phname varchar(255) not null unique,
     # 매물번호
     pno int unsigned,
     constraint primary key(phno),
@@ -249,7 +249,7 @@ create table brokerage(
 	# 중개번호
 	bno int unsigned auto_increment,
     # 파일명
-    bfile varchar(30) not null unique,
+    bfile varchar(255) not null,
     # 승인날짜
     bdate datetime default now(),
     # 담당자
