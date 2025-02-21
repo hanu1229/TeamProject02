@@ -7,7 +7,7 @@
 - 서진석
 - 이민진
 - 최홍빈
-- 한웅재
+- 한웅재 https://github.com/hanu1229
 
 ## 개발 환경
 - Front : JSP, CSS, JS
