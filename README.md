@@ -1,4 +1,7 @@
 # 3조 부동산 중개 사이트 프로젝트 "이것방"
+<div align = "center">
+  <img src = "https://github.com/hanu1229/TeamProject02/blob/master/TeamProject02/src/main/webapp/img/logo.png" width = "400" height = "400"/>
+</div>
 
 ## 개요
 - 이사 혹은 부동산 매매의 계획이 있는 고객들을 상대로 안전하고 간편한 매물 관리 및 부동산 거래를 위한 프로젝트
