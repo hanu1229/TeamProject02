@@ -4,9 +4,9 @@
 - 이사 혹은 부동산 매매의 계획이 있는 고객들을 상대로 안전하고 간편한 매물 관리 및 부동산 거래를 위한 프로젝트
 
 ## 팀원 구성
-- 서진석
-- 이민진
-- 최홍빈
+- 서진석 https://github.com/jeenimari
+- 이민진 https://github.com/leeminjin0827
+- 최홍빈 https://github.com/chb777-a
 - 한웅재 https://github.com/hanu1229
 
 ## 개발 환경
